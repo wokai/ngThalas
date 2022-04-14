@@ -1,0 +1,27 @@
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer mode="side" opened="true" >
+    
+    <mat-sidenav-container class="example-container">
+      <mat-sidenav mode="side" opened>
+        <mat-nav-list>
+          <div *ngFor="let device of devices; let idx = index" >
+            <a mat-list-item (click)="selectedDevice=device" >
+              <span style="width:40%;">
+                {{ device.name }}
+              </span>
+              <mat-chip-list>
+                <mat-chip [style.background]="device.com.status.color" matTooltip="Communication status: {{ device.com.status.label }}">C</mat-chip>
+                <mat-chip [style.background]="device.status.color" matTooltip="Device status: {{ device.status.label }}">D</mat-chip>
+                <mat-chip [style.background]="device.xenon.status.color" matTooltip="Bus status: {{ device.xenon.status.label }}">B</mat-chip>
+              </mat-chip-list>
+            </a>
+          </div>
+        </mat-nav-list>
+      </mat-sidenav>
+    </mat-sidenav-container>
+  
+  </mat-drawer>
+  <xenon-device [device]="selectedDevice"></xenon-device>
+</mat-drawer-container>

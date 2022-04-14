@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+<mat-toolbar-row>
+  <button type="button" mat-button >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>{{ title }}</span>
+
+  <div>
+    <a mat-button [routerLink]="'/home'"><mat-icon>home</mat-icon></a>
+    <button mat-button [routerLink]="'/devices'" >Devices</button>
+    <button mat-button [routerLink]="'/params'">Parameters</button>
+    <button mat-button href="https://angular.io/tutorial/toh-pt5">Mat Navigation</button>
+    <button mat-button href="https://blog.angular-university.io/angular-2-router-nested-routes-and-nested-auxiliary-routes-build-a-menu-navigation-system/">Nested Routes</button>
+  </div>
+
+  <span class="mid-spacer"></span>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+
+
+
+

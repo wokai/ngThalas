@@ -1,0 +1,149 @@
+<div class="row mt-2">
+  <div class="col-8">
+    <div class="row">
+      <div class="col-6">ID</div>
+      <div class="col-6">{{ device.id }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Port</div>
+      <div class="col-6">{{ device.port }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Online</div>
+      <div class="col-6"><bool [val]="device.com.online"></bool></div>
+    </div>
+  </div>
+  <div class="col-4 button-box">
+    <button mat-raised-button color="primary" class="device-button" (click)="ping()">Ping</button>   
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-8">
+    <div class="row">
+      <div class="col-6">Interface</div>
+      <div class="col-6">{{ device.os.interface }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Hostname</div>
+      <div class="col-6">{{ device.os.hostname }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Uptime</div>
+      <div class="col-6">{{ device.os.uptime | timeSegments }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Free memory</div>
+      <div class="col-6">{{ device.os.freemem | bytePrefix }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Total memory</div>
+      <div class="col-6">{{ device.os.totalmem | bytePrefix }}</div>
+    </div>
+  </div>
+  <div class="col-4 button-box">
+    <button mat-raised-button color="primary" class="device-button" (click)="getOsData()">OS</button>
+  </div>
+</div>
+
+
+<hr>
+<div class="row">
+  <div class="col-8">
+    <div class="row">
+      <div class="col-6">Port open</div>
+      <div class="col-6"><bool [val]="device.xenon.open"></bool></div>
+    </div>
+    <div class="row">
+      <div class="col-6">Port open</div>
+      <div class="col-6">{{ device.xenon.openText }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Path</div>
+      <div class="col-6">{{ device.xenon.path }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">BaudRate</div>
+      <div class="col-6">{{ device.xenon.baudRate }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">DataBits</div>
+      <div class="col-6">{{ device.xenon.dataBits }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Parity</div>
+      <div class="col-6">{{ device.xenon.parity }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Stop Bits</div>
+      <div class="col-6">{{ device.xenon.stopBits }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Com status</div>
+      <div class="col-6">{{ device.xenon.busStatus }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Com status</div>
+      <div class="col-6">{{ device.xenon.busStatusText }}</div>
+    </div>
+  </div>
+  <div class="col-4 button-box">
+    <button mat-raised-button color="primary" class="device-button" (click)="getXenonStatus()">Port</button>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-8">
+    <div class="row">
+      <div class="col-6">Paths</div>
+      <div class="col-6">
+        <div *ngFor="let d of device.paths">{{d}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4 button-box">
+    <button mat-raised-button color="primary" class="device-button" (click)="getPortPaths()">Paths</button>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-4">
+    Message
+  </div>
+  <div class="col-8">
+    {{ device.xenon.message }}
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-4">
+    Episode
+  </div>
+  <div class="col-8">
+    {{ device.vent.episode }}
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-8">
+    <div class="row">
+      <div class="col-4">
+        <button mat-raised-button class="btn-success" (click)="getPortOpen()">Open</button>
+      </div>
+      <div class="col-4">
+        <button mat-raised-button class="btn-warning" (click)="getPortStop()">Stop</button>
+      </div>
+      <div class="col-4">
+        <button mat-raised-button class="btn-secondary" (click)="getPortClose()">Close</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+     <button mat-raised-button class="btn-success" (click)="getVentData()">Vent</button>   
+  </div>
+</div>

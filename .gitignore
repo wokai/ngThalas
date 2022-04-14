@@ -1,0 +1,7 @@
+
+/node_modules
+/logfiles
+package-lock.json
+checksum_error.txt
+*.log
+/.angular

@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-4">
+    Message ID:  
+  </div>
+  <div class="col-4">
+    {{ device.vent.msgId }}
+  </div>
+  <div class="col-4">
+  </div>
+</div>
+<div class="row">
+  <div class="col-4">
+    Time: 
+  </div>
+  <div class="col-4">
+    {{ device.vent.time | isoTime }}
+  </div>
+  <div class="col-4">
+    {{ device.vent.time | isoDate }}
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-4">
+    Tidalvolume
+  </div>
+  <div class="col-8">
+    {{ device.vent.respiration.tidalvolume }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4">
+    Minutevolume
+  </div>
+  <div class="col-8">
+    {{ device.vent.respiration.minutevolume }}
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-4">
+    F<sub>i</sub>O<sub>2</sub>
+  </div>
+  <div class="col-8">
+    {{ device.vent.gas.fio2 }}
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-4">
+    E<sub>t</sub>CO<sub>2</sub>
+  </div>
+  <div class="col-8">
+    {{ device.vent.gas.feco2 }}
+  </div>
+</div>
+
+
+<div class="row" *ngIf="device.vent.inhalation.desflurane.insp !== null && device.vent.inhalation.desflurane.insp != 0">
+  <div class="col-4">
+    Desflurane
+  </div>
+  <div class="col-4">
+    I &nbsp; {{ device.vent.inhalation.desflurane.insp }}
+  </div>
+  <div class="col-4">
+    E &nbsp; {{ device.vent.inhalation.desflurane.exp }}
+  </div>
+</div>
+
+
+<div class="row" *ngIf="device.vent.inhalation.sevoflurane.insp !== null && device.vent.inhalation.sevoflurane.insp != 0">
+  <div class="col-4">
+    Sevoflurane
+  </div>
+  <div class="col-4">
+    I &nbsp; {{ device.vent.inhalation.sevoflurane.insp }}
+  </div>
+  <div class="col-4">
+    E &nbsp; {{ device.vent.inhalation.sevoflurane.exp }}
+  </div>
+</div>
+
+
+
+<div class="row" *ngIf="device.vent.inhalation.isoflurane.insp !== null && device.vent.inhalation.isoflurane.insp != 0">
+  <div class="col-4">
+    Isoflurane
+  </div>
+  <div class="col-4">
+    I &nbsp; {{ device.vent.inhalation.isoflurane.insp }}
+  </div>
+  <div class="col-4">
+    E &nbsp; {{ device.vent.inhalation.isoflurane.exp }}
+  </div>
+</div>

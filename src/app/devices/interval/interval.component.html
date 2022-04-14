@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-4">
+    <button mat-raised-button color="primary" class="device-button" (click)="intervalStart()">Start</button>
+  </div>
+  <div class="col-4">
+    <button mat-raised-button color="primary" class="device-button" (click)="intervalStop()">Stop</button>
+  </div>
+  <div class="col-4">
+     <button mat-raised-button color="primary" class="device-button" (click)="intervalStatus()">Status</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-4">
+    Cycles:
+  </div>
+  <div class="col-4">
+    {{ status.cycles }}
+  </div>
+  <div class="col-4">
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-4">
+    Start:
+  </div>
+  <div class="col-4">
+    {{ status.start | isoTime }}
+  </div>
+  <div class="col-4">
+    {{ status.start | isoDate }}
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-4">
+    Stop:
+  </div>
+  <div class="col-4">
+    {{ status.stop | isoTime }}
+  </div>
+  <div class="col-4">
+    {{ status.stop | isoDate }}
+  </div>
+</div>

@@ -1,0 +1,46 @@
+
+.ml-1 {
+  margin-left: 1%;
+}
+
+.ml-2 {
+  margin-left: 2%  !important;
+}
+
+.ml-3 {
+  margin-left: 3%;
+}
+
+.button-box {
+  display: flex;
+  flex-direction: column-reverse;
+  column-gap: 1%;
+}
+
+.device-button {
+  width: 50%;
+  height: 40px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #000000;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+
+
+mat-card{
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  box-sizing: border-box;
+}

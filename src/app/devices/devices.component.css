@@ -1,0 +1,109 @@
+mat-drawer {
+  min-width: 300px;
+}
+
+mat-selection-list{
+  width: 90%;
+}
+
+mat-drawer{
+  padding: 10px;
+}
+
+.border {
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+  border-radius: 8px;
+}
+
+
+.shadow {
+  margin: 10px 0px;
+  box-shadow: 2px 2px 5px lightgray;
+}
+
+.device {
+  margin: 5px 0px;
+}
+
+.devname {
+  min-width: 100px;
+}
+
+.mat-row:hover {
+  background-color: whitesmoke;
+}
+
+.mat-cell {
+  padding: 0px 10px 0px 0px;
+}
+
+.device-row-is-clicked {
+  font-weight: bold;
+  color: blue;
+}
+
+.shade-transparent {
+  background-color: #00000000
+}
+
+.shade-green {
+  background-color: #E8F5E9
+}
+
+.shade-amber {
+  background-color: #FFF8E1
+}
+
+.shade-orange {
+  background-color: #FBE9E7
+}
+
+.shade-success {
+  background-color: #28a74520
+}
+
+.shade-warning {
+  background-color: #ffc10730
+}
+
+.shade-secondary {
+  background-color:  #6c757d20
+}
+
+
+table {
+  width: 100%;
+}
+
+
+mat-card{
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  box-sizing: border-box;
+}
+
+
+mat-toolbar {
+    background: #004a9f;
+    color: white;
+}
+
+mat-sidenav {
+    width: 100%;
+    background: #dee2e6;
+    border-radius: 10px;
+    border-width: 10px;
+    padding: 5px;
+    text-align: left;
+}
+
+mat-nav-list a {
+  color: black;
+}
+
+mat-sidenav-container {
+    height: 100%;
+}
+

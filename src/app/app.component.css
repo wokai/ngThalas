@@ -1,0 +1,4 @@
+/* mat-toolbar: Position a title on the left with actions on the right.  */ 
+.mid-spacer {
+ flex: 1 1 auto;
+}

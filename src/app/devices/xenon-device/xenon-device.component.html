@@ -1,0 +1,49 @@
+
+<mat-grid-list cols="4" rowHeight="400px">
+  <mat-grid-tile [rowspan]="2" [colspan]="2" [style.background]="colors[0]">
+    
+    <mat-card *ngIf="device">
+      <mat-card-title>Device: {{ device.name }}</mat-card-title>
+      <mat-card-subtitle>IP: {{ device.ip }}</mat-card-subtitle>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+          <device-status [device]="device"></device-status>
+      </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="!device">
+      <mat-card-title>Device: (No device selected)</mat-card-title>
+      <mat-card-subtitle>IP: </mat-card-subtitle>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+    
+  </mat-grid-tile>
+  
+  <mat-grid-tile [colspan]="2" [style.background]="colors[1]">
+    <div class="outerContainer">
+      <mat-chip-list>
+        <mat-chip [style.background]="b" *ngFor="let b of bg_colors;">B {{b}}</mat-chip>
+      </mat-chip-list>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [style.background]="colors[2]">
+    <mat-card>
+      <mat-card-title>Interval</mat-card-title>
+      <mat-divider inset></mat-divider>
+      <interval [device]="device"></interval>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile [style.background]="colors[3]">
+    <mat-card *ngIf="device">
+      <mat-card-content>
+        <vent-table [device]="device" *ngIf="device"></vent-table>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+
+
+
