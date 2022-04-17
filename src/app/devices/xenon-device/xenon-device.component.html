@@ -21,11 +21,9 @@
   </mat-grid-tile>
   
   <mat-grid-tile [colspan]="2" [style.background]="colors[1]">
-    <div class="outerContainer">
-      <mat-chip-list>
-        <mat-chip [style.background]="b" *ngFor="let b of bg_colors;">B {{b}}</mat-chip>
-      </mat-chip-list>
-    </div>
+    <mat-card *ngIf="device">
+      <resp-display [device]="device"></resp-display>
+    </mat-card>
   </mat-grid-tile>
   <mat-grid-tile [style.background]="colors[2]">
     <mat-card>

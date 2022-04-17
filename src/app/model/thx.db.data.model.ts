@@ -2,7 +2,7 @@
 /// Database respiration dataset
 /// //////////////////////////////////////////////////////////////////////// ///
 
-export interface ThxVentDataType {
+export interface ThxRespDataType {
   msgId:        number,
   device:       number,
   episode:      string,
@@ -28,7 +28,7 @@ export interface ThxGasDataType {
   feco2:    number
 }
 
-export interfact ThxInhalDataType {
+export interface ThxInhalDataType {
   msgId:    number,
   device:   number,
   episode:  string,
@@ -39,4 +39,14 @@ export interfact ThxInhalDataType {
   insp:     number,
   exsp:     number,
   cons:     number
+}
+
+export interface ThxEpisodeDataType {
+  id:         number,
+  device:     number,
+  value:      string,
+  begin:      string,
+  end:        string,
+  createdAt:  string,
+  updatedAt:  string
 }
