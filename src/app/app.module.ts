@@ -43,6 +43,7 @@ import { TimeDisplayComponent } from './time-display/time-display.component';
 import { DeviceStatusComponent } from './devices/xenon-device/device-status/device-status.component';
 import { IntervalComponent    } from './devices/interval/interval.component';
 import { RespDisplayComponent } from './database/resp-display/resp-display.component';
+import { EpisodeFrameComponent } from './database/episode-frame/episode-frame.component';
 
 const routes: Routes = [
   { path : 'home',    component: HomeComponent }, 
@@ -69,7 +70,8 @@ const routes: Routes = [
     VentTableComponent,
     TimeDisplayComponent,
     IntervalComponent,
-    RespDisplayComponent
+    RespDisplayComponent,
+    EpisodeFrameComponent
   ],
   imports: [
     BrowserModule,
