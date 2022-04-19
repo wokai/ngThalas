@@ -1,0 +1,24 @@
+table {
+  width: 100%;
+}
+
+
+.mat-column-id {
+  width: 10%;
+}
+
+.mat-column-device {
+ width: 20%;
+}
+
+.mat-column-value {
+ width: 20%;
+}
+
+.mat-column-begin {
+  width: 20%;
+}
+
+.mat-column-end {
+  end: 20%
+}

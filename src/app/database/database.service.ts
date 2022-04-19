@@ -53,7 +53,7 @@ export class DatabaseService {
 
   
   getEpisodeData(): Observable<ThxEpisodeDataType[]> {
-    return this.http.get<ThxEpisodeDataType[]> (`${this.url}/db/episode`);
+    return this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`);
   }
   
   
