@@ -8,7 +8,7 @@ table {
 }
 
 .mat-column-device {
- width: 20%;
+ width: 30%;
 }
 
 .mat-column-value {
@@ -21,4 +21,15 @@ table {
 
 .mat-column-end {
   end: 20%
+}
+
+.table-container {
+  height: 300px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.date-display {
+  font-size: x-small;
+  color: gray;
 }

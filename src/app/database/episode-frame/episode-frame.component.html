@@ -1,36 +1,38 @@
 <p>Database episodes {{ episodes.length }}</p>
 
-<table mat-table [dataSource]="episodes" class="mat-elevation-z8">
-  
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="episodes" class="mat-elevation-z8">
+    <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let episode"> {{ episode.id }} </td>
+      </ng-container>
 
-<!-- Position Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let episode"> {{ episode.id }} </td>
-  </ng-container>
+      <ng-container matColumnDef="device">
+        <th mat-header-cell *matHeaderCellDef> Device </th>
+        <td mat-cell *matCellDef="let episode"> {{ episode.device }} </td>
+      </ng-container>
 
-  <ng-container matColumnDef="device">
-    <th mat-header-cell *matHeaderCellDef> Device </th>
-    <td mat-cell *matCellDef="let episode"> {{ episode.device }} </td>
-  </ng-container>
+      <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef> Value </th>
+        <td mat-cell *matCellDef="let episode"> {{ episode.value.slice(0, 6) }} </td>
+      </ng-container>
 
-  <ng-container matColumnDef="value">
-    <th mat-header-cell *matHeaderCellDef> Value </th>
-    <td mat-cell *matCellDef="let episode"> {{ episode.value.slice(0, 4) }} </td>
-  </ng-container>
+      <ng-container matColumnDef="begin">
+        <th mat-header-cell *matHeaderCellDef> Begin </th>
+        <td mat-cell *matCellDef="let episode"><div class="date-display">{{ episode.begin | isoDate }}</div> {{ episode.begin | isoTime}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="end">
+        <th mat-header-cell *matHeaderCellDef> End </th>
+        <td mat-cell *matCellDef="let episode"><div class="date-display">{{ episode.end | isoDate }}</div> {{ episode.end | isoTime }} </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="episodeColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: episodeColumns;"></tr>
+      
+    </table>
 
-  <ng-container matColumnDef="begin">
-    <th mat-header-cell *matHeaderCellDef> Begin </th>
-    <td mat-cell *matCellDef="let episode"> {{ episode.begin }} </td>
-  </ng-container>
   
-    <ng-container matColumnDef="end">
-    <th mat-header-cell *matHeaderCellDef> End </th>
-    <td mat-cell *matCellDef="let episode"> {{ episode.end }} </td>
-  </ng-container>
-  
-  <tr mat-header-row *matHeaderRowDef="episodeColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: episodeColumns;"></tr>
-  
-  
-</table>
+</div>
+
