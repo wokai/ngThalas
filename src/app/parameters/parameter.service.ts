@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpErrorResponse }          from '@angular/com
 import { Observable, of, from } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { MedibusParameterType } from '../model/medibus.param.model';
+import { MedibusParameterType, MedibusParameter } from '../model/medibus.param.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +13,9 @@ export class ParameterService {
   private url = '/data/param';
   constructor(private http: HttpClient) { }
   
-  getMedibusParameters(): Observable<MedibusParameterType []> {
+  getMedibusParameters(): Observable<MedibusParameter []> {
     return this.http.get<MedibusParameterType []>(this.url)
-      .pipe(map((d:ThxDeviceData[]) => d.map((x: ThxDeviceData) => ThxXenonDevice.from(x))));
+      .pipe(map((d:MedibusParameterType[]) => d.map((m: MedibusParameterType) => MedibusParameter.from(m))));
   }
   
 }
