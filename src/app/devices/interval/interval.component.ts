@@ -16,8 +16,8 @@ export class IntervalComponent implements AfterViewInit {
   @Input() device!: ThxXenonDevice;
   
   status = {
-    start: '',
-    stop: '',
+    begin: '',
+    end: '',
     cycles: 0
   };
 
@@ -27,18 +27,18 @@ export class IntervalComponent implements AfterViewInit {
   intervalStart() {
     this.service.getIntervalStart()
       .subscribe((res: ThxIntervalType) => { 
-        this.status.start = res.start;
+        this.status.begin = res.begin;
         this.status.cycles = res.cycles;
-        this.status.stop = res.stop;
+        this.status.end = res.end;
       });
   }
   
   intervalStop() {
     this.service.getIntervalStop()
       .subscribe((res: ThxIntervalType) => { 
-        this.status.start = res.start;
+        this.status.begin = res.begin;
         this.status.cycles = res.cycles;
-        this.status.stop = res.stop;
+        this.status.end = res.end;
         console.log(res);
       });
   }
@@ -46,9 +46,9 @@ export class IntervalComponent implements AfterViewInit {
   intervalStatus() {
     this.service.getIntervalStatus()
       .subscribe((res: ThxIntervalType) => {
-        this.status.start = res.start;
+        this.status.begin = res.begin;
         this.status.cycles = res.cycles;
-        this.status.stop = res.stop;
+        this.status.end = res.end;
         console.log(res); 
       });
   }

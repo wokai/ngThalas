@@ -18,7 +18,7 @@ export interface ThxStatusType {
 
 export interface ThxIntervalType {
   id: number,
-  start: string,
-  stop: string,
+  begin: string,
+  end: string,
   cycles: number
 }
