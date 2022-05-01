@@ -1,1 +1,81 @@
-<p>parameters works!</p>
+<mat-drawer-container class="example-container" autosize>
+<mat-drawer mode="side" opened="true" >
+  <mat-sidenav-container>
+    <mat-nav-list style="width:200px;">
+      <div>Mat nav list item</div>
+    </mat-nav-list>
+  </mat-sidenav-container>
+</mat-drawer>
+<mat-card>
+  <mat-card-title>Title</mat-card-title>
+  <mat-card-subtitle>Subtitle</mat-card-subtitle>
+  <mat-divider inset></mat-divider>
+  <mat-card-content>
+    Parameter component
+  </mat-card-content>
+  <mat-divider inset></mat-divider>
+  <mat-card-content class="param-table border">
+    <table mat-table [dataSource]="dataSource">
+      
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let param"> {{ param.id }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Code </th>
+        <td mat-cell *matCellDef="let param"> {{ param.code }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="hexCode">
+        <th mat-header-cell *matHeaderCellDef> HexCode </th>
+        <td mat-cell *matCellDef="let param"> {{ param.hexCode }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let param"> {{ param.description }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="unit">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let param"> {{ param.unit }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="snomedid">
+        <th mat-header-cell *matHeaderCellDef> Snomed-ID </th>
+        <td mat-cell *matCellDef="let param"> {{ param.snomedid }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="format">
+        <th mat-header-cell *matHeaderCellDef> Format </th>
+        <td mat-cell *matCellDef="let param"> {{ param.format }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="m">
+        <th mat-header-cell *matHeaderCellDef> M </th>
+        <td mat-cell *matCellDef="let param"> {{ param.m }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="ll">
+        <th mat-header-cell *matHeaderCellDef> LL </th>
+        <td mat-cell *matCellDef="let param"> {{ param.ll }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="hl">
+        <th mat-header-cell *matHeaderCellDef> HL </th>
+        <td mat-cell *matCellDef="let param"> {{ param.hl }} </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="paramColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: paramColumns"></tr>
+      
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons 
+        aria-label="Select page of parameters">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>
+</mat-drawer-container>
+

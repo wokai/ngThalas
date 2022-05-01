@@ -1,0 +1,41 @@
+
+table {
+  width: 100%;
+}
+
+.mat-column-id {
+  width: 10%;
+}
+
+.mat-column-code {
+  width: 10%;
+}
+
+.mat-column-hexCode {
+  width: 10%;
+}
+
+.mat-column-description {
+  width: 20%;
+}
+
+.mat-column-unit {
+  width: 10%;
+}
+
+.mat-column-snomedid {
+  width: 10%;
+}
+
+.mat-column-format {
+  width: 10%;
+}
+
+.mat-column-hl {
+  width: 10%;
+}
+
+.mat-column-ll{
+  width: 10%;
+}
+ 

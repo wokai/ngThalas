@@ -18,8 +18,7 @@ export class EpisodeFrameComponent implements AfterViewInit {
   constructor(private db : DatabaseService) { }
 
 
-  refresh() {
-  }
+  refresh() {}
 
 
   ngAfterViewInit(): void {

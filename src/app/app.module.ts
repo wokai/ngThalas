@@ -20,6 +20,7 @@ import { MatInputModule     } from '@angular/material/input';
 import { MatListModule      } from '@angular/material/list';
 import { MatSidenavModule   } from '@angular/material/sidenav';
 import { MatTableModule     } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule   } from '@angular/material/toolbar';
 import { MatTooltipModule   } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -40,15 +41,17 @@ import { IsoDatePipe          } from './pipes/iso-date.pipe';
 import { BoolComponent        } from './bool/bool.component';
 import { VentTableComponent   } from './devices/xenon-device/vent-table/vent-table.component';
 import { TimeDisplayComponent } from './time-display/time-display.component';
-import { DeviceStatusComponent } from './devices/xenon-device/device-status/device-status.component';
-import { IntervalComponent    } from './devices/interval/interval.component';
-import { RespDisplayComponent } from './database/resp-display/resp-display.component';
-import { EpisodeFrameComponent } from './database/episode-frame/episode-frame.component';
+import { DeviceStatusComponent  } from './devices/xenon-device/device-status/device-status.component';
+import { IntervalComponent      } from './devices/interval/interval.component';
+import { RespDisplayComponent   } from './database/resp-display/resp-display.component';
+import { EpisodeFrameComponent  } from './database/episode-frame/episode-frame.component';
+import { DatabaseComponent      } from './database/database.component';
 
 const routes: Routes = [
   { path : 'home',    component: HomeComponent }, 
   { path : 'devices', component: DevicesComponent },
   { path : 'params',  component: ParametersComponent },
+  { path : 'db',      component: DatabaseComponent },
   { path : ''       , redirectTo: '/home', pathMatch: 'full' },
   { path : '**'     , redirectTo: '/home', pathMatch: 'full' }
 ];
@@ -71,7 +74,8 @@ const routes: Routes = [
     TimeDisplayComponent,
     IntervalComponent,
     RespDisplayComponent,
-    EpisodeFrameComponent
+    EpisodeFrameComponent,
+    DatabaseComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +94,8 @@ const routes: Routes = [
     MatInputModule,
     MatListModule,  
     MatSidenavModule,  
-    MatTableModule,     
+    MatTableModule,
+    MatPaginatorModule,     
     MatToolbarModule,
     MatTooltipModule,
     MatButtonToggleModule,
