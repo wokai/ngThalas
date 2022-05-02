@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse }          from '@angular/common/http';
 import { Observable, of, from } from 'rxjs';
 
+
+import { ThxDeviceData }                                      from '../model/thx.core.model';
 import { ThxXenonDeviceType, ThxXenonDevice }                 from '../model/thx.xenon.device.model';
 import { ThxRespDataType, ThxGasDataType, ThxInhalDataType, ThxEpisodeDataType }  from '../model/thx.db.data.model';
 
@@ -50,8 +52,10 @@ export class DatabaseService {
     this.endTime = new Date(this.startTime.getTime() + 2 * 3600 * 1000);
   }
   
+  getDeviceData(): Observable<ThxDeviceData[]> {
+    return this.http.get<ThxDeviceData[]> (`${this.url}/device`);
+  }
 
-  
   getEpisodeData(): Observable<ThxEpisodeDataType[]> {
     return this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`);
   }
