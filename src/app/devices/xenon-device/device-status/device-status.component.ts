@@ -125,7 +125,6 @@ export class DeviceStatusComponent implements AfterViewInit {
       .subscribe((res: ThxComResult<ThxVentDataType>) => {
         this.setComStatus(res.com)
         if(res.data !== null) {
-          console.log(res.data)
           this.device.vent = ThxVentData.from(res.data);
         }
       })

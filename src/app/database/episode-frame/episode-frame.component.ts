@@ -1,4 +1,5 @@
-import { Component, Input, AfterViewInit }  from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild }  from '@angular/core';
+import { MatPaginator       }               from '@angular/material/paginator';
 import { MatTableDataSource }               from '@angular/material/table';
 
 import { DatabaseService }    from '../database.service';
@@ -11,15 +12,18 @@ import { ThxEpisodeDataType } from '../../model/thx.db.data.model';
 })
 export class EpisodeFrameComponent implements AfterViewInit {
   
-  episodes: ThxEpisodeDataType[] = []; // =  new MatTableDataSource<ThxEpisodeDataType>();
-  
+  episodes: ThxEpisodeDataType[] = [];
   episodeColumns: string[] = ['id', 'device', 'value', 'begin', 'end' ];
   
-  constructor(private db : DatabaseService) { }
-
+  dataSource: MatTableDataSource<ThxEpisodeDataType>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
+  
+  constructor(private db : DatabaseService) {
+    this.dataSource = new MatTableDataSource<ThxEpisodeDataType>([]);
+  }
 
   refresh() {}
-
 
   ngAfterViewInit(): void {
     this.db.getEpisodeData().subscribe({
@@ -27,8 +31,9 @@ export class EpisodeFrameComponent implements AfterViewInit {
       complete: () => {
         /// This 'refresh' is required for updating of displayed table
         this.episodes = [ ... this.episodes];
-        console.log(`[episode-frame] Reading episodes finished.`); }
-    });
+        this.dataSource = new MatTableDataSource<ThxEpisodeDataType>(this.episodes);
+        this.dataSource.paginator = this.paginator;
+    }});
   }
 
 }

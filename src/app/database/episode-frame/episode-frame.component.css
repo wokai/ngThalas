@@ -24,7 +24,7 @@ table {
 }
 
 .table-container {
-  height: 300px;
+  height: 100%;
   max-width: 100%;
   overflow: auto;
 }

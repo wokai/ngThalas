@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class IsoDatePipe implements PipeTransform {
   
   transform(time: string | null): string {
-    if(time === null) {
+    if(time === null || time === undefined) {
       return '0000-00-00';
     }
     return time.substr(0, 10);

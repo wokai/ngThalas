@@ -39,7 +39,6 @@ export class IntervalComponent implements AfterViewInit {
         this.status.begin = res.begin;
         this.status.cycles = res.cycles;
         this.status.end = res.end;
-        console.log(res);
       });
   }
   
@@ -49,7 +48,6 @@ export class IntervalComponent implements AfterViewInit {
         this.status.begin = res.begin;
         this.status.cycles = res.cycles;
         this.status.end = res.end;
-        console.log(res); 
       });
   }
 }

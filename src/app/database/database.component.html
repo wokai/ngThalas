@@ -1,19 +1,20 @@
-<mat-drawer-container class="example-container" autosize>
-<mat-drawer mode="side" opened="true" >
-  <mat-sidenav-container>
-    <mat-nav-list style="width:600px;">
-      <div>Test item</div>
-      <episode-frame></episode-frame>
-    </mat-nav-list>
-  </mat-sidenav-container>
-</mat-drawer>
-<mat-card>
-  <mat-card-title>Title</mat-card-title>
-  <mat-card-subtitle>Subtitle</mat-card-subtitle>
-  <mat-divider inset></mat-divider>
-  <mat-card-content>
-    Database component
-  </mat-card-content>
-</mat-card>
-</mat-drawer-container>
-
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-title>Episodes</mat-card-title>
+      <mat-card-content>
+        <episode-frame></episode-frame>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-title>Database component</mat-card-title>
+      <mat-card-subtitle>(Subtitle)</mat-card-subtitle>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        Database component
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

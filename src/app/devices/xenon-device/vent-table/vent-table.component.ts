@@ -12,8 +12,24 @@ import { DeviceService } from '../../device.service';
 export class VentTableComponent implements AfterViewInit {
 
   @Input() device!: ThxXenonDevice;
+  
+  ventData!: ThxVentDataType;
 
-  constructor() { }
+  constructor(private service: DeviceService) { }
   ngAfterViewInit(): void {}
+
+
+  /*
+  /// Obtain current ventilation dataset from Xenon-Device
+  getVentData() {
+    this.service.getVentData(this.device)
+      .subscribe((res: ThxComResult<ThxVentDataType>) => {
+        //this.setComStatus(res.com)
+        if(res.data !== null) {
+          this.device.vent = ThxVentData.from(res.data);
+        }
+      })
+  }
+  * */
 
 }
