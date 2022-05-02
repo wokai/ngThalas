@@ -23,6 +23,10 @@ export class ParametersComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource<MedibusParameterType>([]);
   }
 
+  printRow(row: MedibusParameter) : void {
+    console.log(`[param.comp] Click row: ${row.id}`)
+  }
+
 
   ngAfterViewInit(): void {
     this.service.getMedibusParameters()

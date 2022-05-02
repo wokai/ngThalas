@@ -32,10 +32,14 @@ table {
 }
 
 .mat-column-hl {
-  width: 10%;
+  width: 5%;
+}
+
+.mat-column-hl {
+  width: 5%;
 }
 
 .mat-column-ll{
-  width: 10%;
+  width: 5%;
 }
  
