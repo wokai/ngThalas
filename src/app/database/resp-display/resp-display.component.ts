@@ -2,7 +2,7 @@ import { Component, Input, AfterViewInit } from '@angular/core';
 
 import { DatabaseService }                      from '../database.service';
 import { ThxXenonDeviceType, ThxXenonDevice }   from '../../model/thx.xenon.device.model';
-import { ThxRespDataType }  from '../../model/thx.db.data.model';
+import { ThxRespDataType }                      from '../../model/thx.db.data.model';
 
 @Component({
   selector: 'resp-display',
@@ -34,7 +34,7 @@ export class RespDisplayComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     
-    let episode = '0c10ccecf8bd2a4bf1b4a61a918315a7';
+    let episode = 1;
     
     this.db.getRespData(this.device, episode)
       .subscribe((res: ThxRespDataType[]) => { 
