@@ -1,5 +1,6 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 
+import { ThxComResult }                                 from '../../../model/thx.com.status.model';
 import { ThxVentDataType, ThxVentData }                 from '../../../model/thx.vent.data.model';
 import { ThxXenonDeviceType, ThxXenonDevice }           from '../../../model/thx.xenon.device.model';
 import { DeviceService } from '../../device.service';
@@ -19,17 +20,17 @@ export class VentTableComponent implements AfterViewInit {
   ngAfterViewInit(): void {}
 
 
-  /*
+
   /// Obtain current ventilation dataset from Xenon-Device
   getVentData() {
     this.service.getVentData(this.device)
       .subscribe((res: ThxComResult<ThxVentDataType>) => {
-        //this.setComStatus(res.com)
+        /// Com-Status is ignored
         if(res.data !== null) {
-          this.device.vent = ThxVentData.from(res.data);
+          this.ventData = ThxVentData.from(res.data);
         }
       })
   }
-  * */
+
 
 }
