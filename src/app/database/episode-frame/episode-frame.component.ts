@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild }  from '@angular/core';
+import { Component, EventEmitter, Input, Output, AfterViewInit, ViewChild }  from '@angular/core';
 import { MatPaginator       }               from '@angular/material/paginator';
 import { MatTableDataSource }               from '@angular/material/table';
 
@@ -19,8 +19,10 @@ export class EpisodeFrameComponent implements AfterViewInit {
   episodes: ThxEpisodeDataType[] = [];
   episodeColumns: string[] = ['id', 'device', 'value', 'begin', 'end' ];
   device!: string;
-  selectedEpisode!: ThxEpisodeDataType;
   
+  @Input() episode!: ThxEpisodeDataType;
+  @Output() episodeChange = new EventEmitter<ThxEpisodeDataType>();
+    
   dataSource: MatTableDataSource<ThxEpisodeDataType>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
@@ -36,8 +38,8 @@ export class EpisodeFrameComponent implements AfterViewInit {
   }
   
   onRowClicked(row: ThxEpisodeDataType): void {
-    this.selectedEpisode = row
-    console.log(row);
+    this.episode = row;
+    this.episodeChange.emit(row);
   }
 
   ngAfterViewInit(): void {
