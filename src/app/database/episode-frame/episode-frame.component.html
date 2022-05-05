@@ -10,9 +10,22 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
+<hr>
 <div>
-  Selected {{ device }}
+  <table>
+    <tr>
+      <td>Selected device:</td>
+      <td>{{ device }}</td>
+    </tr>
+    <tr>
+      <td>Selected episode:</td>
+      <td>{{ selectedEpisode?.value  }}</td>
+    </tr>
+  </table>
+  
+  
 </div>
+<hr>
 </div>
 
 <div class="table-container mat-elevation-z8">
@@ -49,8 +62,12 @@
         <td mat-cell *matCellDef="let episode"><div class="date-display">{{ episode.end | isoDate }}</div> {{ episode.end | isoTime }} </td>
       </ng-container>
       
-      <tr mat-header-row *matHeaderRowDef="episodeColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: episodeColumns;"></tr>
+     
+      <tr mat-header-row *matHeaderRowDef="episodeColumns" (click)="onHeaderRowClicked()">
+        
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: episodeColumns;" (click)="onRowClicked(row)"> 
+      </tr>
       
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]"

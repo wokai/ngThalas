@@ -19,6 +19,7 @@ export class EpisodeFrameComponent implements AfterViewInit {
   episodes: ThxEpisodeDataType[] = [];
   episodeColumns: string[] = ['id', 'device', 'value', 'begin', 'end' ];
   device!: string;
+  selectedEpisode!: ThxEpisodeDataType;
   
   dataSource: MatTableDataSource<ThxEpisodeDataType>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -29,6 +30,15 @@ export class EpisodeFrameComponent implements AfterViewInit {
   }
 
   refresh() {}
+  
+  onHeaderRowClicked(): void {
+    console.log('Header row clicked');
+  }
+  
+  onRowClicked(row: ThxEpisodeDataType): void {
+    this.selectedEpisode = row
+    console.log(row);
+  }
 
   ngAfterViewInit(): void {
     this.db.getEpisodeData().subscribe({
