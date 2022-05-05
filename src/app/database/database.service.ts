@@ -60,7 +60,6 @@ export class DatabaseService {
     return this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`);
   }
   
-  
   getRespData(x: ThxXenonDevice, episode: number): Observable<ThxRespDataType[]> {
     return this.http.get<ThxRespDataType[]> (`${this.url}/resp/${x.id}/${episode}`);
   }

@@ -7,6 +7,8 @@ export interface ThxDeviceData {
   ip:   string,  
   name: string,
   port: number
+  /// hostname:     string,
+  /// mac:          string
 }
 
 export interface ThxStatusType {

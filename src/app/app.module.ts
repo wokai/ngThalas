@@ -21,6 +21,7 @@ import { MatListModule      } from '@angular/material/list';
 import { MatSidenavModule   } from '@angular/material/sidenav';
 import { MatTableModule     } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule    } from '@angular/material/select';
 import { MatToolbarModule   } from '@angular/material/toolbar';
 import { MatTooltipModule   } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -95,7 +96,8 @@ const routes: Routes = [
     MatListModule,  
     MatSidenavModule,  
     MatTableModule,
-    MatPaginatorModule,     
+    MatPaginatorModule,
+    MatSelectModule,
     MatToolbarModule,
     MatTooltipModule,
     MatButtonToggleModule,

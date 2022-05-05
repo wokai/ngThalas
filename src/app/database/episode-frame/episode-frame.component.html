@@ -1,4 +1,19 @@
+<div>
 <p>Database episodes {{ episodes.length }}</p>
+
+<mat-form-field appearance="fill">
+  <mat-label>Devices</mat-label>
+  <mat-select [(value)]="device">
+    <mat-option>(None)</mat-option>
+    <mat-option *ngFor="let d of devices" value="{{d.name}}">
+      {{d.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div>
+  Selected {{ device }}
+</div>
+</div>
 
 <div class="table-container mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -10,7 +25,7 @@
 
       <ng-container matColumnDef="device">
         <th mat-header-cell *matHeaderCellDef> Device </th>
-        <td mat-cell *matCellDef="let episode"> {{ episode.device }} </td>
+        <td mat-cell *matCellDef="let episode"> {{ episode.deviceid }} </td>
       </ng-container>
 
       <ng-container matColumnDef="value">
@@ -44,4 +59,3 @@
     </mat-paginator>
   
 </div>
-

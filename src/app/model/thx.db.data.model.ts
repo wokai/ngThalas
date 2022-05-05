@@ -43,7 +43,7 @@ export interface ThxInhalDataType {
 
 export interface ThxEpisodeDataType {
   id:         number,
-  device:     number,
+  deviceid:   number,
   value:      string,
   begin:      string,
   end:        string,

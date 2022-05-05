@@ -3,6 +3,8 @@ import { MatPaginator       }               from '@angular/material/paginator';
 import { MatTableDataSource }               from '@angular/material/table';
 
 import { DatabaseService }    from '../database.service';
+
+import { ThxDeviceData      } from '../../model/thx.core.model';
 import { ThxEpisodeDataType } from '../../model/thx.db.data.model';
 
 @Component({
@@ -12,8 +14,11 @@ import { ThxEpisodeDataType } from '../../model/thx.db.data.model';
 })
 export class EpisodeFrameComponent implements AfterViewInit {
   
+  devices: ThxDeviceData [] = [];
+  
   episodes: ThxEpisodeDataType[] = [];
   episodeColumns: string[] = ['id', 'device', 'value', 'begin', 'end' ];
+  device!: string;
   
   dataSource: MatTableDataSource<ThxEpisodeDataType>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -34,6 +39,13 @@ export class EpisodeFrameComponent implements AfterViewInit {
         this.dataSource = new MatTableDataSource<ThxEpisodeDataType>(this.episodes);
         this.dataSource.paginator = this.paginator;
     }});
+    
+    this.db.getDeviceData().subscribe({
+      next:  (val: ThxDeviceData []) => { this.devices.push(...val); },
+      complete: () => {
+        this.devices = [ ... this.devices];
+      }
+    });
   }
 
 }
