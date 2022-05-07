@@ -54,9 +54,7 @@ export class EpisodeFrameComponent implements AfterViewInit {
     
     this.db.getDeviceData().subscribe({
       next:  (val: ThxDeviceData []) => { this.devices.push(...val); },
-      complete: () => {
-        this.devices = [ ... this.devices];
-      }
+      complete: () => { this.devices = [ ... this.devices]; }
     });
   }
 

@@ -64,8 +64,8 @@ export class DatabaseService {
     return this.http.get<ThxEpisodeCountDataType[]> (`${this.url}/episode/count/resp`);
   }
   
-  getRespData(x: ThxXenonDevice, episode: number): Observable<ThxRespDataType[]> {
-    return this.http.get<ThxRespDataType[]> (`${this.url}/resp/${x.id}/${episode}`);
+  getRespData(episode: number): Observable<ThxRespDataType[]> {
+    return this.http.get<ThxRespDataType[]> (`${this.url}/resp/${episode}`);
   }
   
 }

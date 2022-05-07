@@ -1,2 +1,9 @@
-<p>Device: {{ device.id }} </p>
-<p>Length: {{ resp.length }}</p>
+<div>
+  <div *ngIf="episode">
+    <p>Episode: {{ episode.id }} </p>
+    <p>count: {{ resp.length }}</p>
+  </div>
+  <div *ngIf="!episode">
+    (No episode selected)
+  </div>
+</div>

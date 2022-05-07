@@ -15,6 +15,10 @@
       <mat-card-content class="mt10">
         <episode-detail [(episode)]="currentEpisode"></episode-detail>
       </mat-card-content>
+      <mat-divider inset></mat-divider>
+      <mat-card-content class="mt10">
+        <resp-display [episode]="currentEpisode"></resp-display>
+      </mat-card-content>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
