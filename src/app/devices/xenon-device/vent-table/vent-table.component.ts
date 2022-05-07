@@ -16,7 +16,9 @@ export class VentTableComponent implements AfterViewInit {
   
   ventData!: ThxVentDataType;
 
-  constructor(private service: DeviceService) { }
+  constructor(private service: DeviceService) {
+    this.ventData = new ThxVentData();
+  }
   ngAfterViewInit(): void {}
 
 

@@ -21,19 +21,23 @@
   </mat-grid-tile>
   
   <mat-grid-tile [colspan]="2" [style.background]="colors[1]">
-    <mat-card *ngIf="device">
-      <episode-frame></episode-frame>
+    <mat-card>
+      <mat-card-title>Database content</mat-card-title>
+      <mat-divider inset></mat-divider>
+      
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile [style.background]="colors[2]">
     <mat-card>
       <mat-card-title>Interval</mat-card-title>
       <mat-divider inset></mat-divider>
-      <interval [device]="device"></interval>
+      <interval [device]="device" *ngIf="device"></interval>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile [style.background]="colors[3]">
-    <mat-card *ngIf="device">
+    <mat-card>
+      <mat-card-title>Ventilation data</mat-card-title>
+      <mat-divider inset></mat-divider>
       <mat-card-content>
         <vent-table [device]="device" *ngIf="device"></vent-table>
       </mat-card-content>
