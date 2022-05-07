@@ -50,3 +50,13 @@ export interface ThxEpisodeDataType {
   createdAt:  string,
   updatedAt:  string
 }
+
+/// ======================================================================== ///
+/// This extra count property is intended to provide data on how many records
+/// are present in another (e.g. ThxRespDataType) database table.
+/// ======================================================================== ///
+export interface ThxEpisodeCountDataType extends ThxEpisodeDataType {
+  count:      number
+}
+
+

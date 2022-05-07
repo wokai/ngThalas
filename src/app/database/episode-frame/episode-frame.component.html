@@ -41,6 +41,11 @@
         <td mat-cell *matCellDef="let episode"> {{ episode.deviceid }} </td>
       </ng-container>
 
+      <ng-container matColumnDef="count">
+        <th mat-header-cell *matHeaderCellDef> Count </th>
+        <td mat-cell *matCellDef="let episode"> {{ episode.count }} </td>
+      </ng-container>
+
       <ng-container matColumnDef="value">
         <th mat-header-cell *matHeaderCellDef> Value </th>
         <td mat-cell *matCellDef="let episode" 

@@ -12,8 +12,8 @@
       <mat-card-title>Database component</mat-card-title>
       <mat-card-subtitle>(Subtitle)</mat-card-subtitle>
       <mat-divider inset></mat-divider>
-      <mat-card-content>
-        Selected episode: {{ currentEpisode?.value }}
+      <mat-card-content class="mt10">
+        <episode-detail [(episode)]="currentEpisode"></episode-detail>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>

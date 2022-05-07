@@ -1,0 +1,51 @@
+<div>
+<form *ngIf="episode">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>ID</mat-label>
+    <input matInput disabled [(ngModel)]="episode.id" name="episodeId"/>
+    <mat-hint>Unique numberical value</mat-hint>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill" class="full-width mt10">
+    <mat-label>Device</mat-label>
+    <input matInput [(ngModel)]="episode.deviceid" name="episodeDevice">
+    <mat-hint>Numerical represenation of device IP</mat-hint>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill" class="full-width mt10">
+    <mat-label>Count</mat-label>
+    <input matInput [(ngModel)]="episode.count" name="episodeCount">
+    <mat-hint>Number of records in mbVentResp table</mat-hint>
+  </mat-form-field>
+  
+  <table class="full-width mt10" ><tr>
+    <td class="pr10">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Begin</mat-label>
+        <input matInput [(ngModel)]="episode.begin" name="episodeBegin">
+        <mat-hint>Episode begin</mat-hint>
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>End</mat-label>
+        <input matInput [(ngModel)]="episode.end" name="episodeEnd">
+        <mat-hint>Episode end</mat-hint>
+      </mat-form-field>
+    </td>
+  </tr></table>
+  
+  <mat-form-field appearance="fill" class="full-width mt10">
+    <mat-label>Value</mat-label>
+    <input matInput [(ngModel)]="episode.value" name="episodeValue">
+    <mat-hint>Episode UUID</mat-hint>
+  </mat-form-field>
+  
+
+  
+  
+</form>
+<div *ngIf="!episode">
+  (No Episode selected)
+</div>
+</div>

@@ -5,7 +5,7 @@ import { MatTableDataSource }               from '@angular/material/table';
 import { DatabaseService }    from '../database.service';
 
 import { ThxDeviceData      } from '../../model/thx.core.model';
-import { ThxEpisodeDataType } from '../../model/thx.db.data.model';
+import { ThxEpisodeCountDataType } from '../../model/thx.db.data.model';
 
 @Component({
   selector: 'episode-frame',
@@ -16,19 +16,19 @@ export class EpisodeFrameComponent implements AfterViewInit {
   
   devices: ThxDeviceData [] = [];
   
-  episodes: ThxEpisodeDataType[] = [];
-  episodeColumns: string[] = ['id', 'device', 'value', 'begin', 'end' ];
+  episodes: ThxEpisodeCountDataType[] = [];
+  episodeColumns: string[] = ['id', 'device', 'count', 'value', 'begin', 'end' ];
   device!: string;
   
-  @Input() episode!: ThxEpisodeDataType;
-  @Output() episodeChange = new EventEmitter<ThxEpisodeDataType>();
+  @Input() episode!: ThxEpisodeCountDataType;
+  @Output() episodeChange = new EventEmitter<ThxEpisodeCountDataType>();
     
-  dataSource: MatTableDataSource<ThxEpisodeDataType>;
+  dataSource: MatTableDataSource<ThxEpisodeCountDataType>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
   
   constructor(private db : DatabaseService) {
-    this.dataSource = new MatTableDataSource<ThxEpisodeDataType>([]);
+    this.dataSource = new MatTableDataSource<ThxEpisodeCountDataType>([]);
   }
 
   refresh() {}
@@ -37,18 +37,18 @@ export class EpisodeFrameComponent implements AfterViewInit {
     console.log('Header row clicked');
   }
   
-  onRowClicked(row: ThxEpisodeDataType): void {
+  onRowClicked(row: ThxEpisodeCountDataType): void {
     this.episode = row;
     this.episodeChange.emit(row);
   }
 
   ngAfterViewInit(): void {
-    this.db.getEpisodeData().subscribe({
-      next:     (val: ThxEpisodeDataType[]) => { this.episodes.push(...val); },
+    this.db.getEpisodeCountRespData().subscribe({
+      next:     (val: ThxEpisodeCountDataType[]) => { this.episodes.push(...val); },
       complete: () => {
         /// This 'refresh' is required for updating of displayed table
         this.episodes = [ ... this.episodes];
-        this.dataSource = new MatTableDataSource<ThxEpisodeDataType>(this.episodes);
+        this.dataSource = new MatTableDataSource<ThxEpisodeCountDataType>(this.episodes);
         this.dataSource.paginator = this.paginator;
     }});
     

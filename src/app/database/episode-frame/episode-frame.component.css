@@ -8,7 +8,12 @@ table {
 }
 
 .mat-column-device {
- width: 30%;
+ width: 20%;
+}
+
+
+.mat-column-count {
+ width: 10%;
 }
 
 .mat-column-value {

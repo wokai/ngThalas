@@ -5,3 +5,8 @@ mat-card{
   height: calc(100% - 20px);
   box-sizing: border-box;
 }
+
+
+mat-card-content.mt10 {
+  margin-top: 10px;
+}

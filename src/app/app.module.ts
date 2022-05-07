@@ -4,6 +4,7 @@ import { BrowserModule           } from '@angular/platform-browser';
 import { Routes, RouterModule    } from '@angular/router';
 import { HttpClientModule        } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule             } from '@angular/forms';                       /// ngModel
 
 /// Angular material
 import { FlexLayoutModule   } from '@angular/flex-layout';
@@ -47,6 +48,7 @@ import { IntervalComponent      } from './devices/interval/interval.component';
 import { RespDisplayComponent   } from './database/resp-display/resp-display.component';
 import { EpisodeFrameComponent  } from './database/episode-frame/episode-frame.component';
 import { DatabaseComponent      } from './database/database.component';
+import { EpisodeDetailComponent } from './database/episode-detail/episode-detail.component';
 
 const routes: Routes = [
   { path : 'home',    component: HomeComponent }, 
@@ -76,7 +78,8 @@ const routes: Routes = [
     IntervalComponent,
     RespDisplayComponent,
     EpisodeFrameComponent,
-    DatabaseComponent
+    DatabaseComponent,
+    EpisodeDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +87,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
     MatBadgeModule,
     MatButtonModule,
     MatCardModule,    
