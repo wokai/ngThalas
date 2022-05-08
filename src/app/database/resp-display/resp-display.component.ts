@@ -18,8 +18,8 @@ export class RespDisplayComponent implements AfterViewInit {
     return new Date(Math.trunc(d.getTime() / ms) * ms);
   }
   
-  private startTime: Date;
-  private endTime: Date;
+  startTime: Date;
+  endTime: Date;
   private _episode!: ThxEpisodeCountDataType;
   
   resp: ThxRespDataType[] = [];
@@ -27,11 +27,16 @@ export class RespDisplayComponent implements AfterViewInit {
   @Input() set episode(episode: ThxEpisodeCountDataType) {
     this._episode = episode;
     if(this.episode){
+      /// Clear previous content
       this.resp = [];
       this.db.getRespData(episode.id)
         .subscribe({
           next: (res: ThxRespDataType[]) => { this.resp.push(...res); },
-          complete: () => { this.resp = [... this.resp]; }
+          complete: () => {
+            this.resp = [... this.resp];
+            this.startTime = new Date(this.resp[0].time);
+            this.endTime = new Date(this.resp[this.resp.length - 1].time);
+          }
         })
     }
   }

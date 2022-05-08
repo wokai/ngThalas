@@ -8,17 +8,35 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-card>
-      <mat-card-title>Database component</mat-card-title>
-      <mat-card-subtitle>(Subtitle)</mat-card-subtitle>
-      <mat-divider inset></mat-divider>
-      <mat-card-content class="mt10">
-        <episode-detail [(episode)]="currentEpisode"></episode-detail>
-      </mat-card-content>
-      <mat-divider inset></mat-divider>
-      <mat-card-content class="mt10">
+    <table style="width:100%">
+      <tr>
+      <td>
+        
+        <mat-card>
+          <mat-card-title>Database component</mat-card-title>
+          <mat-card-subtitle>(Subtitle)</mat-card-subtitle>
+          <mat-divider inset></mat-divider>
+          <mat-card-content class="mt10">
+            <episode-detail [(episode)]="currentEpisode"></episode-detail>
+          </mat-card-content>
+        </mat-card>
+                
+      </td>
+      </tr>
+      <tr>
+        <td>
         <resp-display [episode]="currentEpisode"></resp-display>
-      </mat-card-content>
-    </mat-card>
+      </td>
+      </tr>
+    </table>
+
+
+
+
+
+
+
+
+
   </mat-grid-tile>
 </mat-grid-list>
