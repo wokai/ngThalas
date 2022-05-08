@@ -1,20 +1,24 @@
-<mat-card >
-  <mat-card-title>Respiration data</mat-card-title>
-  <mat-card-subtitle>(Subtitle)</mat-card-subtitle>
-  <mat-divider inset></mat-divider>
-  <mat-card-content class="mt10" *ngIf="episode">
-    <form>
-    <p>Episode: {{ episode.id }}</p>
-    <p>count: {{ resp.length }}</p>
-    <p>First record: {{ startTime }}</p>
-    <p>Last record: {{ endTime }}</p>
-      
-    </form>
-  </mat-card-content>
-  <mat-card-content class="mt10" *ngIf="!episode">
-    (No Episode selected)
-  </mat-card-content>
-</mat-card>
+<div>
+  <form>
 
+  <table class="full-width mt10"><tr>
+    <td class="pr10">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>First Record</mat-label>
+        <input matInput [(ngModel)]="startTime" name="startTime"/>
+        <mat-hint>Timestamp of first record</mat-hint>
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Last Record</mat-label>
+        <input matInput [(ngModel)]="endTime" name="endTime"/>
+        <mat-hint>Timestamp of last record</mat-hint>
+      </mat-form-field>
+    </td>
+  </tr>
+  </table>
+  </form>
+</div>
 
 

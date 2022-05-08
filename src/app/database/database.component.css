@@ -10,3 +10,9 @@ mat-card{
 mat-card-content.mt10 {
   margin-top: 10px;
 }
+
+
+div.half-width {
+  display: inline-block;
+  width: 50%;
+}

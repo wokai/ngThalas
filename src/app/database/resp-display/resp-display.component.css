@@ -1,0 +1,28 @@
+
+mat-card{
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  box-sizing: border-box;
+}
+
+
+.full-width {
+  width: 100%;
+}
+
+td.pr10 {
+  padding-right: 10px;
+}
+
+td.pl10 {
+  padding-left: 10px;
+}
+
+
+mat-form-field.mt10 {
+  margin-top: 10px;
+}
+
+table.mt10 {
+  margin-top: 10px;
+}
