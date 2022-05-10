@@ -1,0 +1,10 @@
+<mat-card>
+<mat-card-content *ngIf="respData">
+  <span>StartTime: {{ startTime.toISOString() | isoTime}} </span>
+  <span>EndTime: {{ endTime.toISOString() | isoTime }}</span>
+  <canvas #chart></canvas>
+</mat-card-content>
+<mat-card-content *ngIf="!respData">
+(No respiration data)
+</mat-card-content>
+</mat-card>
