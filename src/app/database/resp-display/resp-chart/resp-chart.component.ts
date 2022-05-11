@@ -51,8 +51,36 @@ export class RespChartComponent implements AfterViewInit {
   @Input() set respData(respData: ThxRespDataType[]){
     this._respData = [...respData];
     if(this._respData.length){ /// Prevent TypeScript error...
+      
       this.startTime = this.lastFullInterval(60, new Date(this._respData[0].time));
       this.endTime   = this.nextFullInterval(60, new Date(this._respData[this.respData.length - 1].time));
+      
+      this.blueData.length = 0;
+      this._respData.forEach((r: ThxRespDataType) => {
+        this.blueData.push(new TimePoint(new Date(r.time).getTime(), r.tidalvolume));
+      })
+      
+      this.chart.options.scales = {
+          x: {
+            type: 'time',
+            min: this.startTime.getTime(), // ToDo: Provide internal conversion to appropriate format...
+            max: this.endTime.getTime(),
+            time: {
+              tooltipFormat: "dd-MM-yyyy hh:mm:ss",
+              displayFormats: { minute: "HH:mm" },
+              unit: 'minute',
+              stepSize: 15
+            }
+          },
+          y: {
+            type: 'linear',
+            beginAtZero: true,
+            max: 1000,
+            ticks: {
+              stepSize: 200
+            }
+          }
+        }
       this.chart.update();
 
     }
@@ -65,13 +93,15 @@ export class RespChartComponent implements AfterViewInit {
   private redData: TimePoint[] = [];
   
   constructor() {
+    /// Must be set in constructor
+    this.startTime = this.lastFullInterval(60);
+    this.endTime = this.nextFullInterval(60); 
   }
 
   ngAfterViewInit(): void {
     this.chartRef.nativeElement.width = 600;
     this.chartRef.nativeElement.height = 250;
-    this.startTime = this.lastFullInterval(60);
-    this.endTime = this.nextFullInterval(60);   
+ 
     
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: 'line' as ChartType,
