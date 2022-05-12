@@ -59,12 +59,12 @@
 
       <ng-container matColumnDef="begin">
         <th mat-header-cell *matHeaderCellDef> Begin </th>
-        <td mat-cell *matCellDef="let episode"><div class="date-display">{{ episode.begin | isoDate }}</div> {{ episode.begin | isoTime}} </td>
+        <td mat-cell *matCellDef="let episode"><div class="date-display">{{ episode.begin | localeDate }}</div> {{ episode.begin | localeTime}} </td>
       </ng-container>
       
       <ng-container matColumnDef="end">
         <th mat-header-cell *matHeaderCellDef> End </th>
-        <td mat-cell *matCellDef="let episode"><div class="date-display">{{ episode.end | isoDate }}</div> {{ episode.end | isoTime }} </td>
+        <td mat-cell *matCellDef="let episode"><div class="date-display">{{ episode.end | localeDate }}</div> {{ episode.end | localeTime }} </td>
       </ng-container>
       
      

@@ -36,10 +36,6 @@ import { DevicesComponent     } from './devices/devices.component';
 import { ParametersComponent  } from './parameters/parameters.component';
 import { HomeComponent        } from './home/home.component';
 import { XenonDeviceComponent } from './devices/xenon-device/xenon-device.component';
-import { BytePrefixPipe       } from './pipes/byte-prefix.pipe';
-import { TimeSegmentsPipe     } from './pipes/time-segments.pipe';
-import { IsoTimePipe          } from './pipes/iso-time.pipe';
-import { IsoDatePipe          } from './pipes/iso-date.pipe';
 import { BoolComponent        } from './bool/bool.component';
 import { VentTableComponent   } from './devices/xenon-device/vent-table/vent-table.component';
 import { TimeDisplayComponent } from './time-display/time-display.component';
@@ -50,6 +46,14 @@ import { EpisodeFrameComponent  } from './database/episode-frame/episode-frame.c
 import { DatabaseComponent      } from './database/database.component';
 import { EpisodeDetailComponent } from './database/episode-detail/episode-detail.component';
 import { RespChartComponent } from './database/resp-display/resp-chart/resp-chart.component';
+
+/// Pipes
+import { BytePrefixPipe       } from './pipes/byte-prefix.pipe';
+import { TimeSegmentsPipe     } from './pipes/time-segments.pipe';
+import { IsoTimePipe          } from './pipes/iso-time.pipe';
+import { IsoDatePipe          } from './pipes/iso-date.pipe';
+import { LocaleTimePipe       } from './pipes/locale-time.pipe';
+import { LocaleDatePipe          } from './pipes/locale-date.pipe';
 
 const routes: Routes = [
   { path : 'home',    component: HomeComponent }, 
@@ -68,10 +72,6 @@ const routes: Routes = [
     ParametersComponent,
     HomeComponent,
     XenonDeviceComponent,
-    BytePrefixPipe,
-    TimeSegmentsPipe,
-    IsoTimePipe,
-    IsoDatePipe,
     BoolComponent,
     DeviceStatusComponent,
     VentTableComponent,
@@ -81,7 +81,13 @@ const routes: Routes = [
     EpisodeFrameComponent,
     DatabaseComponent,
     EpisodeDetailComponent,
-    RespChartComponent
+    RespChartComponent,
+    BytePrefixPipe,
+    TimeSegmentsPipe,
+    IsoTimePipe,
+    IsoDatePipe,
+    LocaleTimePipe,
+    LocaleDatePipe
   ],
   imports: [
     BrowserModule,
