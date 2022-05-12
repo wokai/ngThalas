@@ -1,17 +1,17 @@
 <div>
   <form>
   <table class="full-width mt10"><tr>
-    <td class="pr10">
+    <td>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>First Record</mat-label>
-        <input matInput [(ngModel)]="startTime" name="startTime"/>
+        <input matInput disabled [(ngModel)]="displayStartTime" name="startTime"/>
         <mat-hint>Timestamp of first record</mat-hint>
       </mat-form-field>
-    </td>
+    </td>   
     <td>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Last Record</mat-label>
-        <input matInput [(ngModel)]="endTime" name="endTime"/>
+        <input matInput disabled [(ngModel)]="displayEndTime" name="endTime"/>
         <mat-hint>Timestamp of last record</mat-hint>
       </mat-form-field>
     </td>

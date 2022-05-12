@@ -26,7 +26,14 @@ export class RespDisplayComponent implements AfterViewInit {
   startTime: Date;
   endTime: Date;
 
+  /// Transform incoming dates into readable format
+  displayStartTime!: String;
+  displayEndTime!: String;
   
+  setDisplayTimes() {
+    this.displayStartTime = `${this.startTime.toTimeString().substr(0, 8)}  (${this.startTime.toLocaleDateString()})`;
+    this.displayEndTime = `${this.endTime.toTimeString().substr(0, 8)}  (${this.endTime.toLocaleDateString()})`;
+  }
   
   /// ---------------------------------------------------------------------- ///
   /// Respiration
@@ -47,6 +54,8 @@ export class RespDisplayComponent implements AfterViewInit {
             this.respData = [... this.respData];
             this.startTime = new Date(this.respData[0].time);
             this.endTime = new Date(this.respData[this.respData.length - 1].time);
+            
+            this.setDisplayTimes();
           }
         })
     }
@@ -59,9 +68,9 @@ export class RespDisplayComponent implements AfterViewInit {
 
 
   constructor(private db : DatabaseService) {
-    
     this.startTime = this.fullMinutes(60);
     this.endTime = new Date(this.startTime.getTime() + 2 * 3600 * 1000);
+    this.setDisplayTimes();
   }
 
   ngAfterViewInit(): void {}
