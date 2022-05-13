@@ -13,8 +13,8 @@
       <mat-card-title>Respiration data</mat-card-title>
       <mat-card-subtitle>
         <div>
-          <div class="half-width">Episode: {{currentEpisode?.id}}</div>
-          <div class="half-width">Count: {{ currentEpisode?.count }}</div>
+          <div class="half-width">Episode: {{currentEpisode?.eid}}</div>
+          <div class="half-width">Count: {{ currentEpisode?.rcount }}</div>
         </div>
       </mat-card-subtitle>
       <mat-divider inset></mat-divider>
@@ -29,7 +29,7 @@
   <mat-grid-tile> 
     <mat-card>
       <mat-card-title>Episode Detail</mat-card-title>
-      <mat-card-subtitle>Episode: {{currentEpisode?.id}}</mat-card-subtitle>
+      <mat-card-subtitle>Episode: {{currentEpisode?.eid}}</mat-card-subtitle>
       <mat-divider inset></mat-divider>
       <mat-card-content class="mt10">
         <episode-detail [(episode)]="currentEpisode"></episode-detail>

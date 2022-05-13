@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { ThxEpisodeCountDataType } from '../model/thx.db.data.model';
+import { ThxEpisodeRespDataType } from '../model/thx.db.data.model';
 
 @Component({
   selector: 'database',
@@ -10,7 +10,7 @@ import { ThxEpisodeCountDataType } from '../model/thx.db.data.model';
 })
 export class DatabaseComponent implements OnInit {
 
-  currentEpisode!: ThxEpisodeCountDataType;
+  currentEpisode!: ThxEpisodeRespDataType;
 
   constructor() { }
 

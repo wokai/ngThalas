@@ -2,7 +2,7 @@ import { Component, Input, AfterViewInit } from '@angular/core';
 
 import { DatabaseService }                      from '../database.service';
 import { ThxRespDataType }                      from '../../model/thx.db.data.model';
-import { ThxEpisodeDataType, ThxEpisodeCountDataType }  from '../../model/thx.db.data.model';
+import { ThxEpisodeDataType, ThxEpisodeRespDataType }  from '../../model/thx.db.data.model';
 
 
 
@@ -27,42 +27,41 @@ export class RespDisplayComponent implements AfterViewInit {
   endTime: Date;
 
   /// Transform incoming dates into readable format
-  displayStartTime!: String;
-  displayEndTime!: String;
+  firstRecordTime!: String;
+  lastRecordTime!: String;
   episodeUpdate: number = 0;
   
   setDisplayTimes() {
-    this.displayStartTime = `${this.startTime.toTimeString().substr(0, 8)}  (${this.startTime.toLocaleDateString()})`;
-    this.displayEndTime = `${this.endTime.toTimeString().substr(0, 8)}  (${this.endTime.toLocaleDateString()})`;
+    this.firstRecordTime = `${this.startTime.toTimeString().substr(0, 8)}  (${this.startTime.toLocaleDateString()})`;
+    this.lastRecordTime = `${this.endTime.toTimeString().substr(0, 8)}  (${this.endTime.toLocaleDateString()})`;
   }
   
   /// ---------------------------------------------------------------------- ///
   /// Respiration
   /// ---------------------------------------------------------------------- ///
-  private _episode!: ThxEpisodeCountDataType;
+  private _episode!: ThxEpisodeRespDataType;
   
   respData: ThxRespDataType[] = [];
 
-  @Input() set episode(episode: ThxEpisodeCountDataType) {
+  @Input() set episode(episode: ThxEpisodeRespDataType) {
     this._episode = episode;
     if(this.episode){
       /// Clear previous content
       this.respData = [];
-      this.db.getRespData(episode.id)
+      this.db.getRespData(episode.eid)
         .subscribe({
           next: (res: ThxRespDataType[]) => { this.respData.push(...res); },
           complete: () => {
             this.respData = [... this.respData];
             this.startTime = new Date(this.respData[0].time);
             this.endTime = new Date(this.respData[this.respData.length - 1].time);
-            
             this.setDisplayTimes();
           }
         })
     }
   }
   
-  get episode(): ThxEpisodeCountDataType {
+  get episode(): ThxEpisodeRespDataType {
     return this._episode;
   }
 

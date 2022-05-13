@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, AfterViewInit } from '@angular/core';
 
-import { ThxEpisodeCountDataType } from '../../model/thx.db.data.model';
+import { ThxEpisodeRespDataType } from '../../model/thx.db.data.model';
 import { DatabaseService         } from '../database.service';
 
 @Component({
@@ -14,31 +14,31 @@ export class EpisodeDetailComponent implements AfterViewInit {
   endTime: Date;
 
   /// Transform incoming dates into readable format
-  displayStartTime!: String;
-  displayEndTime!: String;
+  episodeStartTime!: String;
+  episodeEndTime!: String;
   
   setDisplayTimes() {
-    this.displayStartTime = `${this.startTime.toTimeString().substr(0, 8)}  (${this.startTime.toLocaleDateString()})`;
-    this.displayEndTime = `${this.endTime.toTimeString().substr(0, 8)}  (${this.endTime.toLocaleDateString()})`;
+    this.episodeStartTime = `${this.startTime.toTimeString().substr(0, 8)}  (${this.startTime.toLocaleDateString()})`;
+    this.episodeEndTime = `${this.endTime.toTimeString().substr(0, 8)}  (${this.endTime.toLocaleDateString()})`;
   }
 
 
-  private _episode!: ThxEpisodeCountDataType;
+  private _episode!: ThxEpisodeRespDataType;
   
-  @Input() set episode(episode: ThxEpisodeCountDataType) {
+  @Input() set episode(episode: ThxEpisodeRespDataType) {
     this._episode = episode;
     if(this.episode){
-      this.startTime = new Date(episode.begin);
-      this.endTime = new Date(episode.end);
+      this.startTime = new Date(episode.ebegin);
+      this.endTime = new Date(episode.eend);
       this.setDisplayTimes();
     }
   }
   
-  get episode(): ThxEpisodeCountDataType {
+  get episode(): ThxEpisodeRespDataType {
     return this._episode;
   }
 
-  @Output() episodeChange = new EventEmitter<ThxEpisodeCountDataType>();
+  @Output() episodeChange = new EventEmitter<ThxEpisodeRespDataType>();
 
   constructor(private db : DatabaseService){
     this.startTime = new Date();

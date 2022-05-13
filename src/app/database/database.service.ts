@@ -5,7 +5,7 @@ import { Observable, of, from } from 'rxjs';
 
 import { ThxDeviceData }                                      from '../model/thx.core.model';
 import { ThxXenonDeviceType, ThxXenonDevice }                 from '../model/thx.xenon.device.model';
-import { ThxRespDataType, ThxGasDataType, ThxInhalDataType, ThxEpisodeDataType, ThxEpisodeCountDataType }  from '../model/thx.db.data.model';
+import { ThxRespDataType, ThxGasDataType, ThxInhalDataType, ThxEpisodeDataType, ThxEpisodeRespDataType }  from '../model/thx.db.data.model';
 
 
 
@@ -67,8 +67,8 @@ export class DatabaseService {
     .pipe(val => {return val;} );
   }
   
-  getEpisodeCountRespData(): Observable<ThxEpisodeCountDataType[]> {
-    return this.http.get<ThxEpisodeCountDataType[]> (`${this.url}/episode/count/resp`);
+  getEpisodeRespData(): Observable<ThxEpisodeRespDataType[]> {
+    return this.http.get<ThxEpisodeRespDataType[]> (`${this.url}/episode/resp/`)
   }
   
   getRespData(episode: number): Observable<ThxRespDataType[]> {

@@ -5,21 +5,21 @@
     <td class="pr10">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>ID</mat-label>
-        <input matInput disabled [(ngModel)]="episode.id" name="episodeId"/>
+        <input matInput disabled [(ngModel)]="episode.eid" name="episodeId"/>
         <mat-hint>Unique numberical value</mat-hint>
       </mat-form-field>
     </td>
     <td class="pr10">
       <mat-form-field appearance="fill" class="full-width mt10">
         <mat-label>Device</mat-label>
-        <input matInput [(ngModel)]="episode.deviceid" name="episodeDevice">
+        <input matInput [(ngModel)]="episode.edeviceid" name="episodeDevice">
         <mat-hint>Numerical represenation of device IP</mat-hint>
       </mat-form-field>
     </td>
     <td>
       <mat-form-field appearance="fill" class="full-width mt10">
         <mat-label>Count</mat-label>
-        <input matInput [(ngModel)]="episode.count" name="episodeCount">
+        <input matInput [(ngModel)]="episode.rcount" name="episodeCount">
         <mat-hint>Number of records in mbVentResp table</mat-hint>
       </mat-form-field>
     </td>
@@ -29,14 +29,14 @@
     <td class="pr10">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Begin</mat-label>
-        <input matInput disabled [(ngModel)]="displayStartTime" name="episodeBegin">
+        <input matInput disabled [(ngModel)]="episodeStartTime" name="episodeBegin">
         <mat-hint>Episode begin</mat-hint>
       </mat-form-field>
     </td>
     <td>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>End</mat-label>
-        <input matInput disabled [(ngModel)]="displayEndTime" name="episodeEnd">
+        <input matInput disabled [(ngModel)]="episodeEndTime" name="episodeEnd">
         <mat-hint>Episode end</mat-hint>
       </mat-form-field>
     </td>
