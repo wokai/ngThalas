@@ -29,14 +29,14 @@
     <td class="pr10">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Begin</mat-label>
-        <input matInput [(ngModel)]="episode.begin" name="episodeBegin">
+        <input matInput disabled [(ngModel)]="displayStartTime" name="episodeBegin">
         <mat-hint>Episode begin</mat-hint>
       </mat-form-field>
     </td>
     <td>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>End</mat-label>
-        <input matInput [(ngModel)]="episode.end" name="episodeEnd">
+        <input matInput disabled [(ngModel)]="displayEndTime" name="episodeEnd">
         <mat-hint>Episode end</mat-hint>
       </mat-form-field>
     </td>

@@ -60,10 +60,11 @@ export class DatabaseService {
     return this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`);
   }
   
-  updateEpisodeData(episode: ThxEpisodeDataType): Observable<ThxEpisodeDataType>{
+  updateEpisodeData(episode: ThxEpisodeDataType): Observable<number>{
     const headers = new HttpHeaders().set("Content-Type", "application/json");
-    return this.http.put<ThxEpisodeDataType>(`${this.url}/episode`, episode)
-    .pipe(val => {console.log(val); return val;} );
+    /// http returns 1 on success and 0 on error
+    return this.http.put<number>(`${this.url}/episode/update/time`, episode)
+    .pipe(val => {return val;} );
   }
   
   getEpisodeCountRespData(): Observable<ThxEpisodeCountDataType[]> {

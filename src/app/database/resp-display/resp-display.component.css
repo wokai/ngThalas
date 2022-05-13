@@ -26,3 +26,10 @@ mat-form-field.mt10 {
 table.mt10 {
   margin-top: 10px;
 }
+
+
+td.center
+{
+    text-align: center; 
+    vertical-align: middle;
+}

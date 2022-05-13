@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThxEpisodeCountDataType } from '../model/thx.db.data.model';
 
 @Component({
-  selector: 'app-database',
+  selector: 'database',
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.css']
 })

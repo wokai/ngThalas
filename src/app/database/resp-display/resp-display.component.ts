@@ -29,6 +29,7 @@ export class RespDisplayComponent implements AfterViewInit {
   /// Transform incoming dates into readable format
   displayStartTime!: String;
   displayEndTime!: String;
+  episodeUpdate: number = 0;
   
   setDisplayTimes() {
     this.displayStartTime = `${this.startTime.toTimeString().substr(0, 8)}  (${this.startTime.toLocaleDateString()})`;
@@ -77,6 +78,8 @@ export class RespDisplayComponent implements AfterViewInit {
   updateEpisodeTimes() {
     this.episode.begin = this.startTime.toISOString();
     this.episode.end = this.endTime.toISOString();
-    this.db.updateEpisodeData(this.episode).subscribe(e => console.log(e));
+    this.db.updateEpisodeData(this.episode).subscribe(res => { 
+      this.episodeUpdate = res;  /// 1: on success
+    });
   }
 }

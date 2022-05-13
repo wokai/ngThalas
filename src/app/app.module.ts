@@ -45,7 +45,7 @@ import { RespDisplayComponent   } from './database/resp-display/resp-display.com
 import { EpisodeFrameComponent  } from './database/episode-frame/episode-frame.component';
 import { DatabaseComponent      } from './database/database.component';
 import { EpisodeDetailComponent } from './database/episode-detail/episode-detail.component';
-import { RespChartComponent } from './database/resp-display/resp-chart/resp-chart.component';
+import { RespChartComponent     } from './database/resp-display/resp-chart/resp-chart.component';
 
 /// Pipes
 import { BytePrefixPipe       } from './pipes/byte-prefix.pipe';
