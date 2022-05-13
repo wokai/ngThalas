@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpErrorResponse }          from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse }          from '@angular/common/http';
 import { Observable, of, from } from 'rxjs';
 
 
@@ -60,6 +60,12 @@ export class DatabaseService {
     return this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`);
   }
   
+  updateEpisodeData(episode: ThxEpisodeDataType): Observable<ThxEpisodeDataType>{
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.put<ThxEpisodeDataType>(`${this.url}/episode`, episode)
+    .pipe(val => {console.log(val); return val;} );
+  }
+  
   getEpisodeCountRespData(): Observable<ThxEpisodeCountDataType[]> {
     return this.http.get<ThxEpisodeCountDataType[]> (`${this.url}/episode/count/resp`);
   }
@@ -67,5 +73,6 @@ export class DatabaseService {
   getRespData(episode: number): Observable<ThxRespDataType[]> {
     return this.http.get<ThxRespDataType[]> (`${this.url}/resp/${episode}`);
   }
+  
   
 }

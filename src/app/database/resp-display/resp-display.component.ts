@@ -2,7 +2,7 @@ import { Component, Input, AfterViewInit } from '@angular/core';
 
 import { DatabaseService }                      from '../database.service';
 import { ThxRespDataType }                      from '../../model/thx.db.data.model';
-import { ThxEpisodeCountDataType }              from '../../model/thx.db.data.model';
+import { ThxEpisodeDataType, ThxEpisodeCountDataType }  from '../../model/thx.db.data.model';
 
 
 
@@ -66,7 +66,6 @@ export class RespDisplayComponent implements AfterViewInit {
   }
 
 
-
   constructor(private db : DatabaseService) {
     this.startTime = this.fullMinutes(60);
     this.endTime = new Date(this.startTime.getTime() + 2 * 3600 * 1000);
@@ -74,4 +73,10 @@ export class RespDisplayComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {}
+  
+  updateEpisodeTimes() {
+    this.episode.begin = this.startTime.toISOString();
+    this.episode.end = this.endTime.toISOString();
+    this.db.updateEpisodeData(this.episode).subscribe(e => console.log(e));
+  }
 }

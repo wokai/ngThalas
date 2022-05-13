@@ -101,7 +101,12 @@ export class DeviceStatusComponent implements AfterViewInit {
   getPortClose() {
     this.service.getPortClose(this.device)
       .subscribe((res: ThxComResult<ThxXenonStatusType>) => {
+        
+        /// ================================================================ ///
+        /// Com is undefined ??
+        console.log(res.com)
         this.setComStatus(res.com)
+        /// ================================================================ ///
         if(res.data !== null) {
           this.device.xenon = ThxXenonStatus.from(res.data);;
         }
