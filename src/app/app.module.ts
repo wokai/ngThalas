@@ -54,6 +54,7 @@ import { IsoTimePipe          } from './pipes/iso-time.pipe';
 import { IsoDatePipe          } from './pipes/iso-date.pipe';
 import { LocaleTimePipe       } from './pipes/locale-time.pipe';
 import { LocaleDatePipe          } from './pipes/locale-date.pipe';
+import { DeviceListComponent } from './devices/device-list/device-list.component';
 
 const routes: Routes = [
   { path : 'home',    component: HomeComponent }, 
@@ -87,7 +88,8 @@ const routes: Routes = [
     IsoTimePipe,
     IsoDatePipe,
     LocaleTimePipe,
-    LocaleDatePipe
+    LocaleDatePipe,
+    DeviceListComponent
   ],
   imports: [
     BrowserModule,

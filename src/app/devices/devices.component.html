@@ -1,12 +1,24 @@
-
+<mat-grid-list cols="3" rowHeight="700px">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-title>Devices</mat-card-title>
+      <mat-card-subtitle>Selected: {{ selectedDevice?.name }}</mat-card-subtitle>
+      <mat-divider inset ></mat-divider>
+        <device-list [(device)]="selectedDevice" ></device-list>
+      <mat-card-content></mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <xenon-device [device]="selectedDevice" class="full-size"></xenon-device>
+  </mat-grid-tile>
+</mat-grid-list>
 
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer mode="side" opened="true" >
-    
     <mat-sidenav-container>
       <mat-sidenav mode="side" opened>
         <mat-nav-list>
-          <div *ngFor="let device of devices; let idx = index" >
+          <div *ngFor="let device of devices" >
             <a mat-list-item (click)="selectedDevice=device" >
               <span style="width:40%;">
                 {{ device.name }}
@@ -23,5 +35,5 @@
     </mat-sidenav-container>
   
   </mat-drawer>
-  <xenon-device [device]="selectedDevice"></xenon-device>
+  
 </mat-drawer-container>

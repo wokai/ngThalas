@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, AfterViewInit, ViewChild }  fro
 import { MatPaginator       }               from '@angular/material/paginator';
 import { MatTableDataSource }               from '@angular/material/table';
 
-import { DatabaseService }    from '../database.service';
+import { DatabaseService }    from '@service/database';
 
 import { ThxDeviceData      } from '../../model/thx.core.model';
 import { ThxEpisodeRespDataType } from '../../model/thx.db.data.model';

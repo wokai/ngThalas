@@ -3,7 +3,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { ThxDeviceData, ThxStatusType }       from '../model/thx.core.model';
 import { ThxXenonDeviceType, ThxXenonDevice } from '../model/thx.xenon.device.model';
 
-import { DeviceService } from './device.service';
+import { DeviceService } from '@service/device';
 
 @Component({
   selector: 'app-devices',

@@ -21,7 +21,13 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@service/device"  : [ "src/app/devices/device.service" ],
+      "@service/database": [ "src/app/database/database.service.ts" ],
+      "@model/device"    : [ "src/app/model/thx.xenon.device.model.ts" ],
+      "@model/core"      : [ "src/app/model/thx.core.model.ts" ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
