@@ -28,7 +28,7 @@ export class DeviceStatusComponent implements AfterViewInit {
   /// (ping, getOsData, getXenonStatus, ...)
   /// ---------------------------------------------------------------------- ///
   setComStatus(com: ThxComStatusType) {
-    console.log(com);
+    //console.log(com);
     
     this.device.com.online = com.online;
     this.device.com.errno = com.errno;

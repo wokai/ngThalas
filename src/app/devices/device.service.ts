@@ -19,17 +19,14 @@ import { ThxXenonDeviceType, ThxXenonDevice }           from '../model/thx.xenon
 export class DeviceService {
 
   private url = '/data/device';
-  private comStatus = new Subject();
+  private comStatus: Subject<ThxComStatus> = new Subject();
   
   constructor(private http: HttpClient) {
-    
-    this.comStatus.subscribe({
-      next: (val) => console.log(val)
-    });
+    //this.comStatus.subscribe({ next: (val) => console.log(val) });
   }
   
   
-  getComStatusObservable() { return this.comStatus; }
+  getComStatusObservable(): Subject<ThxComStatus> { return this.comStatus; }
   
   getXenonDevices(): Observable<ThxXenonDevice []> {
     return this.http.get<ThxDeviceData []>(this.url)
@@ -44,7 +41,7 @@ export class DeviceService {
   getOsData(x: ThxXenonDevice): Observable<ThxComResult<ThxOsStatusType> > { 
     return this.http.get<ThxComResult<ThxOsStatusType> >(`${this.url}/os/${x.id}`)
       .pipe(mergeMap(val => {
-        this.comStatus.next(val);
+        this.comStatus.next(ThxComStatus.from(val.com));
         return of(val);
       }))
   }

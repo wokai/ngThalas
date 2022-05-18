@@ -7,6 +7,7 @@
       <mat-card-subtitle>IP: {{ device.ip }}</mat-card-subtitle>
       <mat-divider inset></mat-divider>
       <mat-card-content>
+          <div>Online: {{ comStatus.online }}</div>
           <device-status [device]="device"></device-status>
       </mat-card-content>
     </mat-card>
