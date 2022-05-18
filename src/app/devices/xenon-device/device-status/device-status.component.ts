@@ -18,6 +18,8 @@ import { DeviceService } from '../../device.service';
 export class DeviceStatusComponent implements AfterViewInit {
 
   @Input() device!: ThxXenonDevice;
+  
+  pingResult: boolean = false;
 
   constructor(private service: DeviceService) { }
 
@@ -43,16 +45,14 @@ export class DeviceStatusComponent implements AfterViewInit {
   
   ping() {
     this.service.ping(this.device)
-     .subscribe((res: ThxComResult<boolean>) => { this.setComStatus(res.com); });
+     .subscribe((res: boolean) => { this.pingResult = res; });
   }
     
   getOsData() {
     this.service.getOsData(this.device)
-      .subscribe((res: ThxComResult<ThxOsStatusType>) => {
-        this.setComStatus(res.com)
-        if(res.data !== null) {
-          this.device.os.assign(res.data);
-          this.device.status = res.com.online ? ThxXenonDevice.levelArray[2] : ThxXenonDevice.levelArray[0];
+      .subscribe((res: ThxOsStatusType) => {
+        if(res !== null) {
+          this.device.os.assign(res);
         }
       });
   }

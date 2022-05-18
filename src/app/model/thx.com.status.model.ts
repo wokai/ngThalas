@@ -5,15 +5,15 @@ import { ThxStatusType } from './thx.core.model';
 /// Status of last communication between Thalas server and Xenon-device
 /// ------------------------------------------------------------------------ ///
 
+/// All other device-related values are represented in
+/// thx.os.status.model
+/// thx.xenon.device.model
+
 export interface ThxComStatusType {
   online: boolean,
   errno:  number,
   code:   string,
-  status: ThxStatusType,
-  
-  pingStatus: ThxStatusType,
-  osStatus  : ThxStatusType,
-  xnStatus  : ThxStatusType
+  status: ThxStatusType
 }
 
 
@@ -48,10 +48,7 @@ export class ThxComStatus implements ThxComStatusType {
   errno     : number  = 0;
   code      : string  = '';
   status    : ThxStatusType = ThxComStatus.levels.empty;
-  
-  pingStatus: ThxStatusType = ThxComStatus.levels.empty;
-  osStatus  : ThxStatusType = ThxComStatus.levels.empty;
-  xnStatus  : ThxStatusType = ThxComStatus.levels.empty;
+
   
   constructor() {}
   

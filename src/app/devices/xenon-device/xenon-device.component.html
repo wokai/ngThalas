@@ -3,27 +3,43 @@
   <mat-grid-tile [rowspan]="2" [colspan]="2" >
     
     <mat-card *ngIf="device">
-      <mat-card-title>Xenon-Device : {{ device.name }}</mat-card-title>
-      <mat-card-subtitle>IP: {{ device.ip }}</mat-card-subtitle>
+      <mat-card-title matTooltip="xenon-device.component">Xenon-Device : {{ device.name }}</mat-card-title>
+      <mat-card-subtitle>
+        <div class="row">
+          <div class="col-4">IP: {{ device.ip }}</div>
+          <div class="col-4">ID: {{ device.id }}</div>
+          <div class="col-4">Port: {{ device.port }}</div>
+        </div>
+        
+      </mat-card-subtitle>
       <mat-divider inset></mat-divider>
       <mat-card-content>
-          <div>Online: {{ comStatus.online }}</div>
+        <div class="row">
+          <div class="col-8">
+            <div class="row">
+              <div class="col-6">Last com</div>
+              <div class="col-6">{{ comStatus.status.label }}</div>
+            </div>
+          </div>
+          <div class="col-4"></div>
+        </div>
+      </mat-card-content>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
           <device-status [device]="device"></device-status>
       </mat-card-content>
     </mat-card>
     <mat-card *ngIf="!device">
-      <mat-card-title>Xenon-Device: (No device selected)</mat-card-title>
+      <mat-card-title matTooltip="xenon-device.component">Xenon-Device: (No device selected)</mat-card-title>
       <mat-card-subtitle>IP: </mat-card-subtitle>
       <mat-divider inset></mat-divider>
       <mat-card-content>
       </mat-card-content>
     </mat-card>
-    
   </mat-grid-tile>
   
   <mat-grid-tile [colspan]="2" >
     <mat-card>
-
       <vent-table [device]="device" *ngIf="device"></vent-table>
     </mat-card>
   </mat-grid-tile>

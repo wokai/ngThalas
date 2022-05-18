@@ -32,44 +32,65 @@ export class DeviceService {
     return this.http.get<ThxDeviceData []>(this.url)
       .pipe(map((d:ThxDeviceData[]) => d.map((x: ThxDeviceData) => ThxXenonDevice.from(x))));
   }
-  ping(x: ThxXenonDevice): Observable<ThxComResult<boolean> > {
-    return this.http.get<ThxComResult<boolean> >(`${this.url}/ping/${x.id}`);
+  
+  ping(x: ThxXenonDevice): Observable<boolean> {
+    return this.http.get<ThxComResult<boolean> >(`${this.url}/ping/${x.id}`)
+      .pipe(mergeMap(val => {
+        this.comStatus.next(ThxComStatus.from(val.com));
+        return of(val.data);
+      }));
   }
+  
   getXenonStatus(x: ThxXenonDevice): Observable<ThxComResult<ThxXenonStatusType> >{ 
-    return this.http.get<ThxComResult<ThxXenonStatusType> >(`${this.url}/port/status/${x.id}`);
-  }
-  getOsData(x: ThxXenonDevice): Observable<ThxComResult<ThxOsStatusType> > { 
-    return this.http.get<ThxComResult<ThxOsStatusType> >(`${this.url}/os/${x.id}`)
+    return this.http.get<ThxComResult<ThxXenonStatusType> >(`${this.url}/port/status/${x.id}`)
       .pipe(mergeMap(val => {
         this.comStatus.next(ThxComStatus.from(val.com));
         return of(val);
-      }))
+      }));
   }
   
-
-  getOsStatus(x: ThxXenonDevice): Observable<ThxOsStatusType> {
+  getOsData(x: ThxXenonDevice): Observable<ThxOsStatusType> { 
     return this.http.get<ThxComResult<ThxOsStatusType> >(`${this.url}/os/${x.id}`)
       .pipe(mergeMap(val => {
-        this.comStatus.next(val.com);
+        this.comStatus.next(ThxComStatus.from(val.com));
         return of(val.data);
       }))
   }
-
   
   getPortPaths(x: ThxXenonDevice): Observable<ThxComResult<string[]> > { 
     return this.http.get<ThxComResult<string[]> >(`${this.url}/port/paths/${x.id}`)
+      .pipe(mergeMap(val => {
+        this.comStatus.next(ThxComStatus.from(val.com));
+        return of(val);
+      }));
   }
   getPortOpen(x: ThxXenonDevice): Observable<ThxComResult<ThxXenonStatusType> >{
     return this.http.get<ThxComResult<ThxXenonStatusType> >(`${this.url}/port/open/${x.id}`)
+      .pipe(mergeMap(val => {
+        this.comStatus.next(ThxComStatus.from(val.com));
+        return of(val);
+      }));
   }
   getPortClose(x: ThxXenonDevice): Observable<ThxComResult<ThxXenonStatusType> > {
     return this.http.get<ThxComResult<ThxXenonStatusType> > (`${this.url}/port/close/${x.id}`)
+      .pipe(mergeMap(val => {
+        this.comStatus.next(ThxComStatus.from(val.com));
+        return of(val);
+      }));
   }
   getPortStop(x: ThxXenonDevice): Observable<ThxComResult<ThxXenonStatusType> > {
     return this.http.get<ThxComResult<ThxXenonStatusType> > (`${this.url}/port/stop/${x.id}`)
+      .pipe(mergeMap(val => {
+        this.comStatus.next(ThxComStatus.from(val.com));
+        return of(val);
+      }));
   }
   getVentData(x: ThxXenonDevice): Observable<ThxComResult<ThxVentDataType> > {
-    return this.http.get<ThxComResult<ThxVentDataType> > (`${this.url}/port/vent/${x.id}`);
+    return this.http.get<ThxComResult<ThxVentDataType> > (`${this.url}/port/vent/${x.id}`)
+      .pipe(mergeMap(val => {
+        this.comStatus.next(ThxComStatus.from(val.com));
+        return of(val);
+      }));
   }
   
   /// Interval 

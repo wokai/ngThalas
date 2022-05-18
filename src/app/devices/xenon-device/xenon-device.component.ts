@@ -20,8 +20,6 @@ export class XenonDeviceComponent implements AfterViewInit {
   
   comStatus: ThxComStatus;
   
-  
-
   constructor(private service: DeviceService) {
     this.comStatus = new ThxComStatus();
     

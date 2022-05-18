@@ -1,16 +1,8 @@
 <div class="row mt-2">
   <div class="col-8">
     <div class="row">
-      <div class="col-6">ID</div>
-      <div class="col-6">{{ device.id }}</div>
-    </div>
-    <div class="row">
-      <div class="col-6">Port</div>
-      <div class="col-6">{{ device.port }}</div>
-    </div>
-    <div class="row">
-      <div class="col-6">Online</div>
-      <div class="col-6"><bool [val]="device.com.online"></bool></div>
+      <div class="col-6" matTooltip="device-status.component">Ping</div>
+      <div class="col-6"><bool [val]="pingResult"></bool></div>
     </div>
   </div>
   <div class="col-4 button-box">

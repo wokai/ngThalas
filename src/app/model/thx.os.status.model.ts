@@ -1,4 +1,3 @@
-
 /// //////////////////////////////////////////////////////////////////////// ///
 /// Operation system status 
 /// //////////////////////////////////////////////////////////////////////// ///
@@ -25,10 +24,9 @@ export class ThxOsStatus implements ThxOsStatusType {
     Object.assign(this, s);
     return this;
   }
-  
+
   static from (s: ThxOsStatusType) {
     return new ThxOsStatus().assign(s);
   }
-  
 }
   
