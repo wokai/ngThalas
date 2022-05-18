@@ -9,7 +9,11 @@ export interface ThxComStatusType {
   online: boolean,
   errno:  number,
   code:   string,
-  status: ThxStatusType
+  status: ThxStatusType,
+  
+  pingStatus: ThxStatusType,
+  osStatus  : ThxStatusType,
+  xnStatus  : ThxStatusType
 }
 
 
@@ -25,25 +29,29 @@ export class ThxComStatus implements ThxComStatusType {
   static levels = {
     empty: {
       id   : 0,
-      label: '(Empty)',
-      color: '#80000000'  /// Transparent
+      label: 'Empty',
+      color: '#d5d8dc'  /// Gray
     }, 
     offline: {
       id   : 1,
-      label: 'Offline',
-      color: '#FFCCBC'    /// Deep Orange 
+      label: 'Failed',
+      color: '#FFCCBC'  /// Deep Orange 
     }, 
     online: {
       id   : 2,
-      label: 'Online',
-      color: '#C8E6C9'    /// Green
+      label: 'Success',
+      color: '#C8E6C9'  /// Green
     }
   } as const;
 
-  online: boolean = false;
-  errno : number  = 0;
-  code  : string  = '';
-  status: ThxStatusType = ThxComStatus.levels.empty;
+  online    : boolean = false;
+  errno     : number  = 0;
+  code      : string  = '';
+  status    : ThxStatusType = ThxComStatus.levels.empty;
+  
+  pingStatus: ThxStatusType = ThxComStatus.levels.empty;
+  osStatus  : ThxStatusType = ThxComStatus.levels.empty;
+  xnStatus  : ThxStatusType = ThxComStatus.levels.empty;
   
   constructor() {}
   

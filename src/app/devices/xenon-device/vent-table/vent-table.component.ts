@@ -3,7 +3,7 @@ import { Component, Input, AfterViewInit } from '@angular/core';
 import { ThxComResult }                                 from '../../../model/thx.com.status.model';
 import { ThxVentDataType, ThxVentData }                 from '../../../model/thx.vent.data.model';
 import { ThxXenonDeviceType, ThxXenonDevice }           from '../../../model/thx.xenon.device.model';
-import { DeviceService } from '../../device.service';
+import { DeviceService } from '@service/device';
 
 @Component({
   selector: 'vent-table',

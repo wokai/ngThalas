@@ -8,8 +8,11 @@ export interface ThxVentDataType {
   episode: string,
   respiration: {
     peak        : number,
+    plateau     : number,
+    peep        : number,
     tidalvolume : number,
-    minutevolume: number
+    minutevolume: number,
+    rate        : number
   },
   gas: {
     fio2 : number,
@@ -20,6 +23,7 @@ export interface ThxVentDataType {
     
   },
   inhalation: {
+    mac  : number,
     isoflurane: {
       insp: number,
       exp:  number,
@@ -46,8 +50,11 @@ export class ThxVentData implements ThxVentDataType {
   episode: string = '';
   respiration: {
     peak        : number,
+    plateau     : number,
+    peep        : number,
     tidalvolume : number,
-    minutevolume: number
+    minutevolume: number,
+    rate        : number
   };
   gas: {
     fio2 : number,
@@ -57,6 +64,7 @@ export class ThxVentData implements ThxVentDataType {
     o2uptake: number
   };
   inhalation: {
+    mac  : number,
     isoflurane: {
       insp: number,
       exp:  number,
@@ -78,8 +86,11 @@ export class ThxVentData implements ThxVentDataType {
     this.time = '';
     this.respiration = {
         peak        : 0,
+        plateau     : 0,
+        peep        : 0,
         tidalvolume : 0,
-        minutevolume: 0
+        minutevolume: 0,
+        rate        : 0
       };
     this.gas = {
       fio2 : 0,
@@ -89,6 +100,7 @@ export class ThxVentData implements ThxVentDataType {
       o2uptake: 0
     };
     this.inhalation = {
+      mac : 0,
       isoflurane: {
         insp: 0,
         exp:  0,

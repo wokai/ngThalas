@@ -26,7 +26,10 @@
       "@service/device"  : [ "src/app/devices/device.service" ],
       "@service/database": [ "src/app/database/database.service.ts" ],
       "@model/device"    : [ "src/app/model/thx.xenon.device.model.ts" ],
-      "@model/core"      : [ "src/app/model/thx.core.model.ts" ]
+      "@model/core"      : [ "src/app/model/thx.core.model.ts" ],
+      "@model/com/result": [ "src/app/model/thx.com.result.model.ts" ],
+      "@model/com/status": [ "src/app/model/thx.com.status.model.ts" ]
+      
     }
   },
   "angularCompilerOptions": {

@@ -1,107 +1,142 @@
 <div class="row">
-  <div class="col-7">
-  
+  <div class="col-6">
+    <h4>Current device data</h4>
   </div>
-  <div class="col-5">
-    <button mat-raised-button class="btn-success" (click)="getVentData()">Vent-Data</button>   
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-4">
-    Message ID:  
-  </div>
-  <div class="col-4">
-    {{ ventData.msgId }}
-  </div>
-  <div class="col-4">
-  </div>
-</div>
-<div class="row">
-  <div class="col-4">
-    Time: 
-  </div>
-  <div class="col-4">
-    {{ ventData.time | isoTime }}
-  </div>
-  <div class="col-4">
-    {{ ventData.time | isoDate }}
+  <div class="col-6">
+     <button mat-raised-button class="btn-success" (click)="getVentData()">Vent-Data</button>   
   </div>
 </div>
 <hr>
 <div class="row">
-  <div class="col-4">
-    Tidalvolume
+  <div class="col-3">
+    Message ID
   </div>
-  <div class="col-8">
-    {{ ventData.respiration.tidalvolume }}
+  <div class="col-3">
+    {{ ventData.msgId }}
+  </div>
+  <div class="col-6">
+     
   </div>
 </div>
-
 <div class="row">
-  <div class="col-4">
+  <div class="col-3">
+    Time: 
+  </div>
+  <div class="col-3">
+    {{ ventData.time | isoTime }}
+  </div>
+  <div class="col-3">
+    {{ ventData.time | isoDate }}
+  </div>
+  <div class="col-3"></div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-3">
+    Tidalvolume
+  </div>
+  <div class="col-3">
+    {{ ventData.respiration.tidalvolume }}
+  </div>
+  <div class="col-3">
     Minutevolume
   </div>
-  <div class="col-8">
+  <div class="col-3">
     {{ ventData.respiration.minutevolume }}
   </div>
 </div>
+
+<div class="row">
+  <div class="col-3">
+    Peak
+  </div>
+  <div class="col-3">
+    {{ ventData.respiration.peak }}
+  </div>
+  <div class="col-3">
+    PEEP
+  </div>
+  <div class="col-3">
+    {{ ventData.respiration.peep }}
+  </div>
+</div>
 <hr>
 <div class="row">
-  <div class="col-4">
+  <div class="col-3">
     F<sub>i</sub>O<sub>2</sub>
   </div>
-  <div class="col-8">
+  <div class="col-3">
     {{ ventData.gas.fio2 }}
+  </div>
+  <div class="col-3">
+    O2-Cons
+  </div>
+  <div class="col-3">
+    {{ ventData.gas.o2uptake }}
   </div>
 </div>
 
 
 <div class="row">
-  <div class="col-4">
+  <div class="col-3">
     E<sub>t</sub>CO<sub>2</sub>
   </div>
-  <div class="col-8">
+  <div class="col-3">
     {{ ventData.gas.feco2 }}
+  </div>
+  <div class="col-3">
+    F<sub>i</sub>CO<sub>2</sub>
+  </div>
+  <div class="col-3">
+    {{ ventData.gas.fico2 }}
   </div>
 </div>
 
 
 <div class="row" *ngIf="ventData.inhalation.desflurane.insp !== null && ventData.inhalation.desflurane.insp != 0">
-  <div class="col-4">
+  <div class="col-3">
     Desflurane
   </div>
-  <div class="col-4">
+  <div class="col-3">
     I &nbsp; {{ ventData.inhalation.desflurane.insp }}
   </div>
-  <div class="col-4">
+  <div class="col-3">
     E &nbsp; {{ ventData.inhalation.desflurane.exp }}
+  </div>
+  <div class="col-3">
+    Cons &nbsp; {{ ventData.inhalation.desflurane.cons }}
   </div>
 </div>
 
 
 <div class="row" *ngIf="ventData.inhalation.sevoflurane.insp !== null && ventData.inhalation.sevoflurane.insp != 0">
-  <div class="col-4">
+  <div class="col-3">
     Sevoflurane
   </div>
-  <div class="col-4">
+  <div class="col-3">
     I &nbsp; {{ ventData.inhalation.sevoflurane.insp }}
   </div>
-  <div class="col-4">
+  <div class="col-3">
     E &nbsp; {{ ventData.inhalation.sevoflurane.exp }}
+  </div>
+  <div class="col-3">
+    Cons &nbsp; {{ ventData.inhalation.sevoflurane.cons }}
   </div>
 </div>
 
 
 
 <div class="row" *ngIf="ventData.inhalation.isoflurane.insp !== null && ventData.inhalation.isoflurane.insp != 0">
-  <div class="col-4">
+  <div class="col-3">
     Isoflurane
   </div>
-  <div class="col-4">
+  <div class="col-3">
     I &nbsp; {{ ventData.inhalation.isoflurane.insp }}
   </div>
-  <div class="col-4">
+  <div class="col-3">
     E &nbsp; {{ ventData.inhalation.isoflurane.exp }}
+  </div>
+  <div class="col-3">
+    Cons &nbsp; {{ ventData.inhalation.isoflurane.cons }}
   </div>
 </div>

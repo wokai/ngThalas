@@ -1,12 +1,11 @@
 <mat-grid-list cols="4" rowHeight="250px">
-  <mat-grid-tile [rowspan]="2" [colspan]="2" [style.background]="colors[0]">
+  <mat-grid-tile [rowspan]="2" [colspan]="2">
     
    <mat-card>
       <mat-card-title>Devices</mat-card-title>
       <mat-card-subtitle>Xenon</mat-card-subtitle>
       
       <mat-divider inset></mat-divider>
-      <time-display></time-display>
       <mat-card-actions align="end">
         <button mat-button>Details</button>
         <button mat-button>Archive</button>
@@ -14,7 +13,7 @@
     </mat-card>
     
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [style.background]="colors[1]" >
+  <mat-grid-tile [colspan]="2" >
 
    <mat-card>
       <mat-card-title>Locations</mat-card-title>
@@ -28,7 +27,7 @@
     </mat-card>
 
   </mat-grid-tile>
-  <mat-grid-tile [style.background]="colors[2]">
+  <mat-grid-tile >
     
     <mat-card>
       <mat-card-title>Recordings</mat-card-title>
@@ -42,12 +41,11 @@
     </mat-card>
     
   </mat-grid-tile>
-  <mat-grid-tile [style.background]="colors[3]">
+  <mat-grid-tile>
     
     <mat-card>
       <mat-card-title>Reports</mat-card-title>
       <mat-card-subtitle>Reports</mat-card-subtitle>
-      
       
       <mat-divider inset></mat-divider>
       <mat-card-actions align="end">

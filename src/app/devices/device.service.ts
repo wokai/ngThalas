@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, of, from } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, Subject, of, from } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 
 
 import { ThxDeviceData, ThxStatusType, ThxIntervalType  } from '../model/thx.core.model';
@@ -19,8 +19,17 @@ import { ThxXenonDeviceType, ThxXenonDevice }           from '../model/thx.xenon
 export class DeviceService {
 
   private url = '/data/device';
-  constructor(private http: HttpClient) { }
+  private comStatus = new Subject();
   
+  constructor(private http: HttpClient) {
+    
+    this.comStatus.subscribe({
+      next: (val) => console.log(val)
+    });
+  }
+  
+  
+  getComStatusObservable() { return this.comStatus; }
   
   getXenonDevices(): Observable<ThxXenonDevice []> {
     return this.http.get<ThxDeviceData []>(this.url)
@@ -34,7 +43,22 @@ export class DeviceService {
   }
   getOsData(x: ThxXenonDevice): Observable<ThxComResult<ThxOsStatusType> > { 
     return this.http.get<ThxComResult<ThxOsStatusType> >(`${this.url}/os/${x.id}`)
+      .pipe(mergeMap(val => {
+        this.comStatus.next(val);
+        return of(val);
+      }))
   }
+  
+
+  getOsStatus(x: ThxXenonDevice): Observable<ThxOsStatusType> {
+    return this.http.get<ThxComResult<ThxOsStatusType> >(`${this.url}/os/${x.id}`)
+      .pipe(mergeMap(val => {
+        this.comStatus.next(val.com);
+        return of(val.data);
+      }))
+  }
+
+  
   getPortPaths(x: ThxXenonDevice): Observable<ThxComResult<string[]> > { 
     return this.http.get<ThxComResult<string[]> >(`${this.url}/port/paths/${x.id}`)
   }

@@ -19,7 +19,7 @@ export class DeviceListComponent implements AfterViewInit {
   dataSource: MatTableDataSource<ThxXenonDevice>;
 
   /// Table data definition
-  deviceColumns: string[] = ['name', 'ip', 'id', 'port' ];
+  deviceColumns: string[] = ['name', 'com', 'device', 'xenon' ];
 
 
   constructor(private dev : DeviceService) {
@@ -37,7 +37,6 @@ export class DeviceListComponent implements AfterViewInit {
   }
   
   onRowClicked(dev: ThxXenonDevice): void {
-    console.log(`Device clicked: ${dev.name}`);
     this.device = dev;
     this.deviceChange.emit(dev);
   }
