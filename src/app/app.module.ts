@@ -14,6 +14,7 @@ import { MatCardModule      } from '@angular/material/card';
 import { MatChipsModule     } from '@angular/material/chips';
 import { MatDialogModule    } from '@angular/material/dialog';
 import { MatDividerModule   } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatGridListModule  } from '@angular/material/grid-list';
 import { MatIconModule      } from '@angular/material/icon';
@@ -55,6 +56,7 @@ import { IsoDatePipe          } from './pipes/iso-date.pipe';
 import { LocaleTimePipe       } from './pipes/locale-time.pipe';
 import { LocaleDatePipe          } from './pipes/locale-date.pipe';
 import { DeviceListComponent } from './devices/device-list/device-list.component';
+import { GasChartComponent } from './database/resp-display/gas-chart/gas-chart.component';
 
 const routes: Routes = [
   { path : 'home',    component: HomeComponent }, 
@@ -89,7 +91,8 @@ const routes: Routes = [
     IsoDatePipe,
     LocaleTimePipe,
     LocaleDatePipe,
-    DeviceListComponent
+    DeviceListComponent,
+    GasChartComponent
   ],
   imports: [
     BrowserModule,
@@ -103,6 +106,7 @@ const routes: Routes = [
     MatCardModule,    
     MatChipsModule,
     MatDialogModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,

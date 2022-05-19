@@ -75,5 +75,7 @@ export class DatabaseService {
     return this.http.get<ThxRespDataType[]> (`${this.url}/resp/${episode}`);
   }
   
-  
+  getGasData(episode: number): Observable<ThxGasDataType[]>{
+    return this.http.get<ThxGasDataType[]> (`${this.url}/gas/${episode}`);
+  }
 }

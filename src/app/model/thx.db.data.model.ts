@@ -69,3 +69,13 @@ export interface ThxEpisodeRespDataType extends ThxEpisodeDataType {
 
 
 
+export class TimePoint {
+  x : number;
+  y : number;
+  
+  constructor(x = new Date().getTime(), y = 0) {
+    this.x = x;
+    this.y = y;
+  }
+}
+

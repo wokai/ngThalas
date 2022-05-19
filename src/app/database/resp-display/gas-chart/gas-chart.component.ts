@@ -6,15 +6,16 @@ import {de} from 'date-fns/locale';
 import { Chart, LineController, LineElement, PointElement, LinearScale, Title, ChartType, ScatterDataPoint, TimeScale } from 'chart.js'
 Chart.register(LineController, LineElement, PointElement, LinearScale, Title, TimeScale);
 
-import { ThxRespDataType, TimePoint}                      from '../../../model/thx.db.data.model';
+import { ThxGasDataType, TimePoint}                      from '../../../model/thx.db.data.model';
+
 
 
 @Component({
-  selector: 'resp-chart',
-  templateUrl: './resp-chart.component.html',
-  styleUrls: ['./resp-chart.component.css']
+  selector: 'gas-chart',
+  templateUrl: './gas-chart.component.html',
+  styleUrls: ['./gas-chart.component.css']
 })
-export class RespChartComponent implements AfterViewInit {
+export class GasChartComponent implements AfterViewInit {
   
   /// Returns (current) time truncated to last integral fraction of given
   /// time interval (60, 10:12 -> 10:00)
@@ -30,25 +31,26 @@ export class RespChartComponent implements AfterViewInit {
 
   startTime!: Date;
   endTime!: Date;
-  private _respData: ThxRespDataType[] = [];
+  private _gasData: ThxGasDataType[] = [];
   
   @ViewChild('chart')
   private chartRef!: ElementRef;
   private chart!: Chart;
 
-  @Input() set respData(respData: ThxRespDataType[]){
-    this._respData = [...respData];
-    if(this._respData.length){ /// Prevent TypeScript error...
-      
-      this.startTime = this.lastFullInterval(60, new Date(this._respData[0].time));
-      this.endTime   = this.nextFullInterval(60, new Date(this._respData[this.respData.length - 1].time));
-      
-      this.blueData.length = 0;
-      this._respData.forEach((r: ThxRespDataType) => {
-        this.blueData.push(new TimePoint(new Date(r.time).getTime(), r.tidalvolume));
-      })
-      
-      this.chart.options.scales = {
+
+  @Input() set gasData(gasData: ThxGasDataType[]){
+    this._gasData = [...gasData];
+     if(this._gasData.length){ /// Prevent TypeScript error...
+     
+        this.startTime = this.lastFullInterval(60, new Date(this._gasData[0].time));
+        this.endTime   = this.nextFullInterval(60, new Date(this._gasData[this.gasData.length - 1].time));  
+       
+        this.blueData.length = 0;
+        this._gasData.forEach((g: ThxGasDataType) => {
+          this.blueData.push(new TimePoint(new Date(g.time).getTime(), g.fio2));
+        })
+       
+        this.chart.options.scales = {
           x: {
             type: 'time',
             min: this.startTime.getTime(),
@@ -63,23 +65,24 @@ export class RespChartComponent implements AfterViewInit {
           y: {
             type: 'linear',
             beginAtZero: true,
-            max: 1000,
+            max: 100,
             ticks: {
-              stepSize: 200
+              stepSize: 20
             }
           }
         }
       this.chart.update();
-
-    }
+       
+       
+     }
   }
-  get respData() { return this._respData; }
-  
-  
+
+  get gasData() { return this._gasData; }
+
     
   private blueData: TimePoint[] = [];
   private redData: TimePoint[] = [];
-  
+
   constructor() {
     /// Must be set in constructor
     this.startTime = this.lastFullInterval(60);

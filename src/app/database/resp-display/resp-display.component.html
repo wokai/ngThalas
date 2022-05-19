@@ -1,8 +1,8 @@
 <div>
   <form>
-  <table class="full-width mt10"><tr>
+  <table class="full-width my10"><tr>
     <td>
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="fill" class="full-width" matTooltip="resp-display.component">
         <mat-label>First Record</mat-label>
         <input matInput disabled [(ngModel)]="firstRecordTime" name="startTime"/>
         <mat-hint>Timestamp of first record</mat-hint>
@@ -20,8 +20,39 @@
     </td>
   </tr>
   </table>
-  <resp-chart [respData]="respData"></resp-chart>
+  
+  
+  
+  <mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Respiration data
+      </mat-panel-title>
+      <mat-panel-description>
+        Tidal volume
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <resp-chart [respData]="respData"></resp-chart>
+  </mat-expansion-panel>
+  <mat-expansion-panel >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Gas data
+      </mat-panel-title>
+      <mat-panel-description>
+        F<sub>i</sub>O<sub>2</sub>, E<sub>t</sub>CO<sub>2</sub>, O<sub>2</sub>-Uptake
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>Gas panel</p>
+    <gas-chart [gasData]="gasData"></gas-chart>
+  </mat-expansion-panel>
+</mat-accordion>
+
+  
+  
   </form>
 </div>
+
 
 

@@ -27,6 +27,15 @@ table.mt10 {
   margin-top: 10px;
 }
 
+table.mb10 {
+  margin-bottom: 10px;
+}
+
+table.my10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 
 td.center
 {

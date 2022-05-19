@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 
 import { DatabaseService }                      from '../database.service';
-import { ThxRespDataType }                      from '../../model/thx.db.data.model';
+import { ThxRespDataType, ThxGasDataType }      from '../../model/thx.db.data.model';
 import { ThxEpisodeDataType, ThxEpisodeRespDataType }  from '../../model/thx.db.data.model';
 
 
@@ -31,6 +31,8 @@ export class RespDisplayComponent implements AfterViewInit {
   lastRecordTime!: String;
   episodeUpdate: number = 0;
   
+  
+  
   setDisplayTimes() {
     this.firstRecordTime = `${this.startTime.toTimeString().substr(0, 8)}  (${this.startTime.toLocaleDateString()})`;
     this.lastRecordTime = `${this.endTime.toTimeString().substr(0, 8)}  (${this.endTime.toLocaleDateString()})`;
@@ -42,6 +44,7 @@ export class RespDisplayComponent implements AfterViewInit {
   private _episode!: ThxEpisodeRespDataType;
   
   respData: ThxRespDataType[] = [];
+  gasData:  ThxGasDataType[] = [];
 
   @Input() set episode(episode: ThxEpisodeRespDataType) {
     this._episode = episode;
@@ -58,6 +61,11 @@ export class RespDisplayComponent implements AfterViewInit {
             this.setDisplayTimes();
           }
         })
+      this.db.getGasData(episode.eid)
+        .subscribe({
+          next: (res: ThxGasDataType[]) => { this.gasData.push(...res); },
+          complete: () => { this.gasData = [... this.gasData]; }
+        });
     }
   }
   
