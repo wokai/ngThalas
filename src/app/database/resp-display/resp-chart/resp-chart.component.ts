@@ -41,7 +41,7 @@ export class RespChartComponent implements AfterViewInit {
     if(this._respData.length){ /// Prevent TypeScript error...
       
       this.startTime = this.lastFullInterval(60, new Date(this._respData[0].time));
-      this.endTime   = this.nextFullInterval(60, new Date(this._respData[this.respData.length - 1].time));
+      this.endTime   = this.nextFullInterval(60, new Date(this._respData[this._respData.length - 1].time));
       
       this.blueData.length = 0;
       this._respData.forEach((r: ThxRespDataType) => {
@@ -100,12 +100,14 @@ export class RespChartComponent implements AfterViewInit {
             /// Light Blue 50
             backgroundColor: '#E1F5FE', /// 0
             borderColor: '#29B6F6',     /// 400
+            pointRadius: 2
           },
           {
             data: this.redData,
             /// Red 50
             backgroundColor: '#FFEBEE',
-            borderColor: '#EF5350'
+            borderColor: '#EF5350',
+            pointRadius: 1
           }
         ]
       },

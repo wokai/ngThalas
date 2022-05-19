@@ -43,12 +43,18 @@ export class GasChartComponent implements AfterViewInit {
      if(this._gasData.length){ /// Prevent TypeScript error...
      
         this.startTime = this.lastFullInterval(60, new Date(this._gasData[0].time));
-        this.endTime   = this.nextFullInterval(60, new Date(this._gasData[this.gasData.length - 1].time));  
+        this.endTime   = this.nextFullInterval(60, new Date(this._gasData[this._gasData.length - 1].time));  
        
         this.blueData.length = 0;
+        this.redData.length = 0;
+        this.greenData.length = 0;
         this._gasData.forEach((g: ThxGasDataType) => {
           this.blueData.push(new TimePoint(new Date(g.time).getTime(), g.fio2));
+          this.redData.push(new TimePoint(new Date(g.time).getTime(), g.feco2));
+          this.greenData.push(new TimePoint(new Date(g.time).getTime(), g.o2uptake));
         })
+        
+        
        
         this.chart.options.scales = {
           x: {
@@ -82,6 +88,7 @@ export class GasChartComponent implements AfterViewInit {
     
   private blueData: TimePoint[] = [];
   private redData: TimePoint[] = [];
+  private greenData: TimePoint[] = [];
 
   constructor() {
     /// Must be set in constructor
@@ -103,12 +110,20 @@ export class GasChartComponent implements AfterViewInit {
             /// Light Blue 50
             backgroundColor: '#E1F5FE', /// 0
             borderColor: '#29B6F6',     /// 400
+            pointRadius: 2
           },
           {
             data: this.redData,
             /// Red 50
             backgroundColor: '#FFEBEE',
-            borderColor: '#EF5350'
+            borderColor: '#EF5350',
+            pointRadius: 2
+          },
+          {
+            data: this.greenData,
+            backgroundColor: '#adf0ed',
+            borderColor: '#20b2aa',
+            pointRadius: 2
           }
         ]
       },

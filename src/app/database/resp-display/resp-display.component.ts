@@ -51,6 +51,7 @@ export class RespDisplayComponent implements AfterViewInit {
     if(this.episode){
       /// Clear previous content
       this.respData = [];
+      this.gasData = [];
       this.db.getRespData(episode.eid)
         .subscribe({
           next: (res: ThxRespDataType[]) => { this.respData.push(...res); },

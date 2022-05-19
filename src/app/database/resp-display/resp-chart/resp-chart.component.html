@@ -1,5 +1,6 @@
 <mat-card>
 <mat-card-content *ngIf="respData">
+  <div>Number of records: {{ respData.length }}</div>
   <canvas #chart></canvas>
 </mat-card-content>
 <mat-card-content *ngIf="!respData">
