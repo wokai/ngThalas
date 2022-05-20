@@ -94,9 +94,9 @@ export class RespChartComponent implements AfterViewInit {
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: 'line' as ChartType,
       data: {
-        labels: [ 'Tidalvolume' ],
         datasets: [
           { 
+            label: 'Tidal volume',
             data: this.blueData,
             /// Light Blue 50
             backgroundColor: '#E1F5FE', /// 0

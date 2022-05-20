@@ -3,7 +3,7 @@ import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular
 import 'chartjs-adapter-date-fns';
 import {de} from 'date-fns/locale';
 
-import { Chart, LineController, LineElement, PointElement, LinearScale, Title, ChartType, ScatterDataPoint, TimeScale } from 'chart.js'
+import { Chart, Legend, LineController, LineElement, PointElement, LinearScale, Title, ChartType, ScatterDataPoint, TimeScale } from 'chart.js'
 Chart.register(LineController, LineElement, PointElement, LinearScale, Title, TimeScale);
 
 import { ThxGasDataType, TimePoint}                      from '../../../model/thx.db.data.model';
@@ -93,7 +93,7 @@ export class GasChartComponent implements AfterViewInit {
   constructor() {
     /// Must be set in constructor
     this.startTime = this.lastFullInterval(60);
-    this.endTime = this.nextFullInterval(60); 
+    this.endTime = this.nextFullInterval(60);
   }
 
   ngAfterViewInit(): void {
@@ -104,9 +104,9 @@ export class GasChartComponent implements AfterViewInit {
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: 'line' as ChartType,
       data: {
-        labels: [ 'FiO2', 'FeCO2', 'O2-Uptake' ],
         datasets: [
           { 
+            label: "FiO2",
             data: this.blueData,
             /// Light Blue 50
             backgroundColor: '#E1F5FE', /// 0
@@ -115,6 +115,7 @@ export class GasChartComponent implements AfterViewInit {
           },
           {
             data: this.redData,
+            label: 'EtCO2',
             /// Red 50
             backgroundColor: '#FFEBEE',
             borderColor: '#EF5350',
@@ -122,6 +123,7 @@ export class GasChartComponent implements AfterViewInit {
           },
           {
             data: this.greenData,
+            label: 'O2-consumption',
             backgroundColor: '#adf0ed',
             borderColor: '#20b2aa',
             pointRadius: 2
@@ -130,6 +132,10 @@ export class GasChartComponent implements AfterViewInit {
       },
       options: {
         plugins: {
+          title: {
+            display: true,
+            text: 'Gas Chart'
+          },
           legend: {
             display: true
           }
