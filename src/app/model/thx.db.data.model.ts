@@ -66,8 +66,22 @@ export interface ThxEpisodeRespDataType extends ThxEpisodeDataType {
   rend:      string
 }
 
+/// ======================================================================== ///
+/// Count episode count data:
+/// - Returned by Episode delete method
+/// ======================================================================== ///
+
+export interface ThxEpisodeCountDataType {
+  inhal:    number,
+  gas:      number,
+  resp:     number,
+  episode:  number
+}
 
 
+/// ======================================================================== ///
+/// Chart data
+/// ======================================================================== ///
 
 export class TimePoint {
   x : number;

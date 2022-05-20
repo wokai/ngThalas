@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse }          from '@angular/common/http';
-import { Observable, of, from } from 'rxjs';
-
+import { Observable, Subject, of, from } from 'rxjs';
 
 import { ThxDeviceData }                                      from '../model/thx.core.model';
 import { ThxXenonDeviceType, ThxXenonDevice }                 from '../model/thx.xenon.device.model';
-import { ThxRespDataType, ThxGasDataType, ThxInhalDataType, ThxEpisodeDataType, ThxEpisodeRespDataType }  from '../model/thx.db.data.model';
+import { 
+          ThxRespDataType, ThxGasDataType, ThxInhalDataType, ThxEpisodeDataType,
+          ThxEpisodeRespDataType, ThxEpisodeCountDataType
+       }  from '../model/thx.db.data.model';
 
 
 
@@ -42,9 +44,12 @@ export class DatabaseService {
   }
   private startTime: Date;
   private endTime: Date;
-
   private url = '/data/db';
   
+  private _episodes: ThxEpisodeDataType[] = [];
+  episodes: Subject<ThxEpisodeDataType[]> = new Subject();
+  
+    
   
   constructor(private http: HttpClient) {
     
@@ -55,6 +60,20 @@ export class DatabaseService {
   getDeviceData(): Observable<ThxDeviceData[]> {
     return this.http.get<ThxDeviceData[]> (`${this.url}/device`);
   }
+
+  getEpisodeObservable(): Observable<ThxEpisodeDataType[]> {
+    return this.episodes;
+  }
+  
+  getEpisodeUpdate(): void {
+    this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`)
+      .subscribe((e: ThxEpisodeDataType[]) => {
+        this._episodes.length = 0;
+        this._episodes.push(...e);
+        this.episodes.next(this._episodes);
+      })
+  }
+
 
   getEpisodeData(): Observable<ThxEpisodeDataType[]> {
     return this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`);
@@ -77,5 +96,9 @@ export class DatabaseService {
   
   getGasData(episode: number): Observable<ThxGasDataType[]>{
     return this.http.get<ThxGasDataType[]> (`${this.url}/gas/${episode}`);
+  }
+  
+  deleteEpisode(episode: number): Observable<ThxEpisodeCountDataType> {
+    return this.http.get<ThxEpisodeCountDataType> (`${this.url}/delete/${episode}`);
   }
 }

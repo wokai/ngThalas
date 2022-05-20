@@ -104,6 +104,7 @@ export class GasChartComponent implements AfterViewInit {
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: 'line' as ChartType,
       data: {
+        labels: [ 'FiO2', 'FeCO2', 'O2-Uptake' ],
         datasets: [
           { 
             data: this.blueData,
@@ -128,6 +129,11 @@ export class GasChartComponent implements AfterViewInit {
         ]
       },
       options: {
+        plugins: {
+          legend: {
+            display: true
+          }
+        },
         parsing: {
             xAxisKey: 'x',
             yAxisKey: 'y'
