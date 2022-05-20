@@ -113,7 +113,7 @@ export class GasChartComponent implements AfterViewInit {
             data: this.blueData,
             /// Light Blue 50
             backgroundColor: '#E1F5FE', /// 0
-            borderColor: '#29B6F6',     /// 400
+            borderColor: '#007bff',     /// 400
             pointRadius: 2
           },
           {
@@ -121,14 +121,14 @@ export class GasChartComponent implements AfterViewInit {
             label: 'EtCO2',
             /// Red 50
             backgroundColor: '#FFEBEE',
-            borderColor: '#EF5350',
+            borderColor: '#dc3545',
             pointRadius: 2
           },
           {
             data: this.greenData,
             label: 'O2-consumption',
             backgroundColor: '#adf0ed',
-            borderColor: '#20b2aa',
+            borderColor: '#28a745',
             pointRadius: 2
           }
         ]

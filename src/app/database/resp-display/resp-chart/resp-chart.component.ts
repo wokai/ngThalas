@@ -49,6 +49,7 @@ export class RespChartComponent implements AfterViewInit {
       this._respData.forEach((r: ThxRespDataType) => {
         this.blueData.push(new TimePoint(new Date(r.time).getTime(), r.tidalvolume));
         this.redData.push(new TimePoint(new Date(r.time).getTime(), r.peak));
+        this.greenData.push(new TimePoint(new Date(r.time).getTime(), r.peep));
       })
       
       this.chart.options.scales = {
@@ -70,6 +71,15 @@ export class RespChartComponent implements AfterViewInit {
             ticks: {
               stepSize: 200
             }
+          },
+          y1: {
+            type: 'linear',
+            position: 'right',
+            beginAtZero: true,
+            max: 50,
+            ticks: {
+              stepSize: 10
+            }
           }
         }
       this.chart.update();
@@ -82,6 +92,7 @@ export class RespChartComponent implements AfterViewInit {
     
   private blueData: TimePoint[] = [];
   private redData: TimePoint[] = [];
+  private greenData: TimePoint[] = [];
   
   constructor() {
     /// Must be set in constructor
@@ -103,18 +114,26 @@ export class RespChartComponent implements AfterViewInit {
             data: this.blueData,
             /// Light Blue 50
             backgroundColor: '#E1F5FE', /// 0
-            borderColor: '#29B6F6',     /// 400
+            borderColor: '#007bff',     /// 400
             pointRadius: 2,
-            yAxisID: 'y'
+            yAxisID: 'y',
           },
           {
             label: 'Peak pressure',
             data: this.redData,
             /// Red 50
             backgroundColor: '#FFEBEE',
-            borderColor: '#EF5350',
+            borderColor: '#dc3545',
             pointRadius: 1,
-            yAxisID: 'y1'
+            yAxisID: 'y1',
+          },
+          {
+            data: this.greenData,
+            label: 'PEEP',
+            backgroundColor: '#adf0ed',
+            borderColor: '#28a745',
+            pointRadius: 2,
+            yAxisID: 'y1',
           }
         ]
       },
@@ -138,6 +157,7 @@ export class RespChartComponent implements AfterViewInit {
           y: {
             type: 'linear',
             beginAtZero: true,
+            display: true,
             max: 1000,
             ticks: {
               stepSize: 200
@@ -145,6 +165,8 @@ export class RespChartComponent implements AfterViewInit {
           },
           y1: {
             type: 'linear',
+            display: true,
+            position: 'right',
             beginAtZero: true,
             max: 40,
             ticks: {
