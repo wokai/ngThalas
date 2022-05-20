@@ -57,6 +57,7 @@ import { LocaleTimePipe       } from './pipes/locale-time.pipe';
 import { LocaleDatePipe          } from './pipes/locale-date.pipe';
 import { DeviceListComponent } from './devices/device-list/device-list.component';
 import { GasChartComponent } from './database/resp-display/gas-chart/gas-chart.component';
+import { InhalChartComponent } from './database/resp-display/inhal-chart/inhal-chart.component';
 
 const routes: Routes = [
   { path : 'home',    component: HomeComponent }, 
@@ -92,7 +93,8 @@ const routes: Routes = [
     LocaleTimePipe,
     LocaleDatePipe,
     DeviceListComponent,
-    GasChartComponent
+    GasChartComponent,
+    InhalChartComponent
   ],
   imports: [
     BrowserModule,

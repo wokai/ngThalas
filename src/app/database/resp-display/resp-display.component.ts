@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 
 import { DatabaseService }                      from '../database.service';
-import { ThxRespDataType, ThxGasDataType }      from '../../model/thx.db.data.model';
+import { ThxRespDataType, ThxGasDataType, ThxInhalDataType } from '../../model/thx.db.data.model';
 import { ThxEpisodeDataType, ThxEpisodeRespDataType }  from '../../model/thx.db.data.model';
 
 
@@ -43,15 +43,18 @@ export class RespDisplayComponent implements AfterViewInit {
   /// ---------------------------------------------------------------------- ///
   private _episode!: ThxEpisodeRespDataType;
   
-  respData: ThxRespDataType[] = [];
-  gasData:  ThxGasDataType[] = [];
+  respData:  ThxRespDataType[]  = [];
+  gasData:   ThxGasDataType[]   = [];
+  inhalData: ThxInhalDataType[] = [];
 
   @Input() set episode(episode: ThxEpisodeRespDataType) {
     this._episode = episode;
     if(this.episode){
       /// Clear previous content
-      this.respData = [];
-      this.gasData = [];
+      this.respData  = [];
+      this.gasData   = [];
+      this.inhalData = [];
+      
       this.db.getRespData(episode.eid)
         .subscribe({
           next: (res: ThxRespDataType[]) => { this.respData.push(...res); },
@@ -62,10 +65,21 @@ export class RespDisplayComponent implements AfterViewInit {
             this.setDisplayTimes();
           }
         })
+        
       this.db.getGasData(episode.eid)
         .subscribe({
           next: (res: ThxGasDataType[]) => { this.gasData.push(...res); },
           complete: () => { this.gasData = [... this.gasData]; }
+        });
+      
+      this.db.getInhalData(episode.eid)
+        .subscribe({
+          next: (res: ThxInhalDataType[]) => { this.inhalData.push(...res); },
+          complete: () => {
+            this.inhalData = [...this.inhalData];
+            this.startTime = new Date(this.inhalData[0].time);
+            this.endTime   = new Date(this.inhalData[this.inhalData.length - 1].time);
+          }
         });
     }
   }

@@ -7,19 +7,15 @@ import {de} from 'date-fns/locale';
 import { Chart, ChartType } from 'chart.js'
 /// ------------------------------------------------------------------------ ///
 
-
-
-import { ThxGasDataType, TimePoint}                      from '../../../model/thx.db.data.model';
-
-
+import { ThxInhalDataType, TimePoint}                      from '../../../model/thx.db.data.model';
 
 @Component({
-  selector: 'gas-chart',
-  templateUrl: './gas-chart.component.html',
-  styleUrls: ['./gas-chart.component.css']
+  selector: 'inhal-chart',
+  templateUrl: './inhal-chart.component.html',
+  styleUrls: ['./inhal-chart.component.css']
 })
-export class GasChartComponent implements AfterViewInit {
-  
+export class InhalChartComponent implements AfterViewInit {
+
   /// Returns (current) time truncated to last integral fraction of given
   /// time interval (60, 10:12 -> 10:00)
   lastFullInterval (min: number, d=new Date()) {
@@ -34,34 +30,38 @@ export class GasChartComponent implements AfterViewInit {
 
   startTime!: Date;
   endTime!: Date;
-  private _gasData: ThxGasDataType[] = [];
-  get gasData() { return this._gasData; }
+  private _inhalData: ThxInhalDataType[] = [];
+  get inhalData() { return this._inhalData; }
   
   @ViewChild('chart')
   private chartRef!: ElementRef;
   private chart!: Chart;
+  
+  consMax: number = 0;
+  consLast: number = 0;
+  private inspData: TimePoint[] = [];
+  private macData:  TimePoint[] = [];
+  private consData: TimePoint[] = [];
 
-  private blueData:  TimePoint[] = [];
-  private redData:   TimePoint[] = [];
-  private greenData: TimePoint[] = [];
-
-  @Input() set gasData(gasData: ThxGasDataType[]){
-    this._gasData = [...gasData];
-     if(this._gasData.length){ /// Prevent TypeScript error...
-     
-        this.startTime = this.lastFullInterval(60, new Date(this._gasData[0].time));
-        this.endTime   = this.nextFullInterval(60, new Date(this._gasData[this._gasData.length - 1].time));  
-       
-        this.blueData.length = 0;
-        this.redData.length = 0;
-        this.greenData.length = 0;
-        this._gasData.forEach((g: ThxGasDataType) => {
-          this.blueData.push(new TimePoint(new Date(g.time).getTime(), g.fio2));
-          this.redData.push(new TimePoint(new Date(g.time).getTime(), g.feco2));
-          this.greenData.push(new TimePoint(new Date(g.time).getTime(), g.o2uptake));
-        })
+  @Input() set inhalData(inhalData: ThxInhalDataType[]){
+    this._inhalData = [...inhalData];
+    if(this._inhalData.length){ /// Prevent TypeScript error...
+      
+        this.startTime = this.lastFullInterval(60, new Date(this._inhalData[0].time));
+        this.endTime   = this.nextFullInterval(60, new Date(this._inhalData[this._inhalData.length - 1].time));  
         
-        this.chart.options.scales = {
+        this.consMax = Math.max(...this._inhalData.map(i => i.cons));
+        this.consLast = this._inhalData[this._inhalData.length - 1].cons;
+       
+        this.inspData.length = 0;
+        this.macData.length  = 0;
+        this.consData.length = 0;
+        this._inhalData.forEach((i: ThxInhalDataType) => {
+          this.inspData.push(new TimePoint(new Date(i.time).getTime(), i.insp));
+          this.macData.push( new TimePoint(new Date(i.time).getTime(), i.mac));
+          this.consData.push(new TimePoint(new Date(i.time).getTime(), i.cons));
+        })
+      this.chart.options.scales = {
           x: {
             type: 'time',
             min: this.startTime.getTime(),
@@ -76,17 +76,27 @@ export class GasChartComponent implements AfterViewInit {
           y: {
             type: 'linear',
             beginAtZero: true,
-            max: 100,
+            max: 10,
             ticks: {
-              stepSize: 20
+              stepSize: 2
+            }
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            beginAtZero: true,
+            max: Math.ceil(this.consMax/10) * 10,
+            ticks: {
+              stepSize: 10
             }
           }
         }
       this.chart.update();
-     }
+      
+    } 
+    
   }
-
-
 
   constructor() {
     /// Must be set in constructor
@@ -104,24 +114,24 @@ export class GasChartComponent implements AfterViewInit {
       data: {
         datasets: [
           { 
-            label: "FiO2",
-            data: this.blueData,
+            label: "Insp",
+            data: this.inspData,
             /// Light Blue 50
             backgroundColor: '#E1F5FE', /// 0
             borderColor: '#007bff',     /// 400
             pointRadius: 2
           },
           {
-            data: this.redData,
-            label: 'EtCO2',
+            data: this.macData,
+            label: 'MAC',
             /// Red 50
             backgroundColor: '#FFEBEE',
             borderColor: '#dc3545',
             pointRadius: 2
           },
           {
-            data: this.greenData,
-            label: 'O2-consumption',
+            data: this.consData,
+            label: 'Consumption',
             backgroundColor: '#adf0ed',
             borderColor: '#28a745',
             pointRadius: 2

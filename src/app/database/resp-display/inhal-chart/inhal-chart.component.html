@@ -1,0 +1,9 @@
+<mat-card>
+<mat-card-content *ngIf="inhalData">
+  <div>Number of records: {{ inhalData.length }} | Max Cons: {{ consMax }} ml | Last Cons: {{ consLast }}</div>
+  <canvas #chart></canvas>
+</mat-card-content>
+<mat-card-content *ngIf="!inhalData">
+(No inhalation data)
+</mat-card-content>
+</mat-card>

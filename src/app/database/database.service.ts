@@ -100,6 +100,10 @@ export class DatabaseService {
     return this.http.get<ThxGasDataType[]> (`${this.url}/gas/${episode}`);
   }
   
+  getInhalData(episode: number): Observable<ThxInhalDataType[]>{
+    return this.http.get<ThxInhalDataType[]> (`${this.url}/inhal/${episode}`);
+  }
+  
   deleteEpisode(episode: number): Observable<ThxEpisodeCountDataType> {
     return this.http.get<ThxEpisodeCountDataType> (`${this.url}/delete/${episode}`);
   }

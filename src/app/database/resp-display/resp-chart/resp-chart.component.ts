@@ -33,10 +33,15 @@ export class RespChartComponent implements AfterViewInit {
   startTime!: Date;
   endTime!: Date;
   private _respData: ThxRespDataType[] = [];
+  get respData() { return this._respData; }
   
   @ViewChild('chart')
   private chartRef!: ElementRef;
   private chart!: Chart;
+  
+  private blueData:  TimePoint[] = [];
+  private redData:   TimePoint[] = [];
+  private greenData: TimePoint[] = [];
 
   @Input() set respData(respData: ThxRespDataType[]){
     this._respData = [...respData];
@@ -46,6 +51,9 @@ export class RespChartComponent implements AfterViewInit {
       this.endTime   = this.nextFullInterval(60, new Date(this._respData[this._respData.length - 1].time));
       
       this.blueData.length = 0;
+      this.redData.length = 0;
+      this.greenData.length = 0;
+      
       this._respData.forEach((r: ThxRespDataType) => {
         this.blueData.push(new TimePoint(new Date(r.time).getTime(), r.tidalvolume));
         this.redData.push(new TimePoint(new Date(r.time).getTime(), r.peak));
@@ -86,13 +94,7 @@ export class RespChartComponent implements AfterViewInit {
 
     }
   }
-  get respData() { return this._respData; }
-  
-  
-    
-  private blueData: TimePoint[] = [];
-  private redData: TimePoint[] = [];
-  private greenData: TimePoint[] = [];
+
   
   constructor() {
     /// Must be set in constructor
