@@ -1,10 +1,12 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
+/// ------------------------------------------------------------------------ ///
+/// Chart plugins are registrated in 'database.service.ts'
 import 'chartjs-adapter-date-fns';
 import {de} from 'date-fns/locale';
+import { Chart, ChartType } from 'chart.js'
 
-import { Chart, LineController, LineElement, PointElement, LinearScale, Title, ChartType, ScatterDataPoint, TimeScale } from 'chart.js'
-Chart.register(LineController, LineElement, PointElement, LinearScale, Title, TimeScale);
+/// ------------------------------------------------------------------------ ///
 
 import { ThxRespDataType, TimePoint}                      from '../../../model/thx.db.data.model';
 
@@ -46,6 +48,7 @@ export class RespChartComponent implements AfterViewInit {
       this.blueData.length = 0;
       this._respData.forEach((r: ThxRespDataType) => {
         this.blueData.push(new TimePoint(new Date(r.time).getTime(), r.tidalvolume));
+        this.redData.push(new TimePoint(new Date(r.time).getTime(), r.peak));
       })
       
       this.chart.options.scales = {
@@ -102,13 +105,16 @@ export class RespChartComponent implements AfterViewInit {
             backgroundColor: '#E1F5FE', /// 0
             borderColor: '#29B6F6',     /// 400
             pointRadius: 2,
+            yAxisID: 'y'
           },
           {
+            label: 'Peak pressure',
             data: this.redData,
             /// Red 50
             backgroundColor: '#FFEBEE',
             borderColor: '#EF5350',
-            pointRadius: 1
+            pointRadius: 1,
+            yAxisID: 'y1'
           }
         ]
       },
@@ -132,9 +138,17 @@ export class RespChartComponent implements AfterViewInit {
           y: {
             type: 'linear',
             beginAtZero: true,
-            max: 10,
+            max: 1000,
             ticks: {
-              stepSize: 2
+              stepSize: 200
+            }
+          },
+          y1: {
+            type: 'linear',
+            beginAtZero: true,
+            max: 40,
+            ticks: {
+              stepSize: 5
             }
           }
         }

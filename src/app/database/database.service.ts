@@ -10,8 +10,8 @@ import {
        }  from '../model/thx.db.data.model';
 
 
-
-
+import { Chart, Legend } from 'chart.js'
+Chart.register(Legend);
 
 export class RespTimePoint {
   x : number;

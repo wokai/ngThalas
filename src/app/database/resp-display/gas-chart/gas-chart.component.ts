@@ -1,10 +1,13 @@
 import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
+/// ------------------------------------------------------------------------ ///
+/// Chart plugins are registrated in 'database.service.ts'
 import 'chartjs-adapter-date-fns';
 import {de} from 'date-fns/locale';
+import { Chart, ChartType } from 'chart.js'
+/// ------------------------------------------------------------------------ ///
 
-import { Chart, Legend, LineController, LineElement, PointElement, LinearScale, Title, ChartType, ScatterDataPoint, TimeScale } from 'chart.js'
-Chart.register(LineController, LineElement, PointElement, LinearScale, Title, TimeScale);
+
 
 import { ThxGasDataType, TimePoint}                      from '../../../model/thx.db.data.model';
 
@@ -132,14 +135,11 @@ export class GasChartComponent implements AfterViewInit {
       },
       options: {
         plugins: {
-          title: {
-            display: true,
-            text: 'Gas Chart'
-          },
           legend: {
             display: true
           }
         },
+
         parsing: {
             xAxisKey: 'x',
             yAxisKey: 'y'
