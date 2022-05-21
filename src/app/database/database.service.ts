@@ -51,7 +51,12 @@ export class DatabaseService {
   private _episodes: ThxEpisodeDataType[] = [];
   episodes: Subject<ThxEpisodeDataType[]> = new Subject();
   
-    
+  /// ////////////////////////////////////////////////////////////////////// ///
+  /// Observable test area
+  /// ////////////////////////////////////////////////////////////////////// ///
+  private _episodeResp: ThxEpisodeRespDataType[] = [];
+  episodeResp: Subject<ThxEpisodeRespDataType[]> = new Subject();
+  /// ////////////////////////////////////////////////////////////////////// ///
   
   constructor(private http: HttpClient) {
     
@@ -75,8 +80,7 @@ export class DatabaseService {
         this.episodes.next(this._episodes);
       })
   }
-
-
+  
   getEpisodeData(): Observable<ThxEpisodeDataType[]> {
     return this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`);
   }
@@ -87,6 +91,26 @@ export class DatabaseService {
     return this.http.put<number>(`${this.url}/episode/update/time`, episode)
     .pipe(val => {return val;} );
   }
+  
+  /// ////////////////////////////////////////////////////////////////////// ///
+  /// Observable test area
+  /// ////////////////////////////////////////////////////////////////////// ///
+  
+  getEpisodeRespObs(): Observable<ThxEpisodeRespDataType[]> {
+    return this.episodeResp;
+  }
+  
+  updateEpisodeRespData(): void {
+    this.http.get<ThxEpisodeRespDataType[]> (`${this.url}/episode/resp/`)
+      .subscribe({
+        next:  (val: ThxEpisodeRespDataType[]) => { this._episodeResp.push(...val); },
+        complete: () => {
+            this.episodeResp.next(this._episodeResp);
+        }
+      });
+  }
+  
+  /// ////////////////////////////////////////////////////////////////////// ///
   
   getEpisodeRespData(): Observable<ThxEpisodeRespDataType[]> {
     return this.http.get<ThxEpisodeRespDataType[]> (`${this.url}/episode/resp/`)

@@ -15,10 +15,15 @@ import { ThxEpisodeRespDataType } from '../../model/thx.db.data.model';
 export class EpisodeFrameComponent implements AfterViewInit {
   
   devices: ThxDeviceData [] = [];
-  
   episodes: ThxEpisodeRespDataType[] = [];
   episodeColumns: string[] = ['id', 'device', 'count', 'value', 'begin', 'end' ];
   device!: string;
+  
+  /// ////////////////////////////////////////////////////////////////////// ///
+  /// Observable test area
+  /// ////////////////////////////////////////////////////////////////////// ///
+  epiResp: ThxEpisodeRespDataType[] = [];
+  /// ////////////////////////////////////////////////////////////////////// ///
   
   @Input() episode!: ThxEpisodeRespDataType;
   @Output() episodeChange = new EventEmitter<ThxEpisodeRespDataType>();
@@ -56,6 +61,29 @@ export class EpisodeFrameComponent implements AfterViewInit {
       next:  (val: ThxDeviceData []) => { this.devices.push(...val); },
       complete: () => { this.devices = [ ... this.devices]; }
     });
+    
+    /// //////////////////////////////////////////////////////////////////// ///
+    /// Observable test area
+    /// //////////////////////////////////////////////////////////////////// ///
+    this.db.getEpisodeRespObs().subscribe({
+      next: (val: ThxEpisodeRespDataType[]) =>  {
+        this.epiResp = [ ... val];
+        console.log(`[EpisodeResp] Subscriber: Next. Length of val: ${val.length}`);
+      },
+      complete: () => { 
+        console.log(`[EpisodeResp] Subscriber: Complete. Length of epiResp: ${this.epiResp.length}`);
+        this.epiResp = [... this.epiResp];
+      }
+    });
+    /// //////////////////////////////////////////////////////////////////// ///
   }
+  
+  /// ////////////////////////////////////////////////////////////////////// ///
+  /// Observable test area
+  /// ////////////////////////////////////////////////////////////////////// ///
+  updateEpisodeRespData(): void {
+    this.db.updateEpisodeRespData();
+  }
+  /// ////////////////////////////////////////////////////////////////////// ///
 
 }
