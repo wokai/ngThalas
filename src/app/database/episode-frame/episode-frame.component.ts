@@ -65,16 +65,11 @@ export class EpisodeFrameComponent implements AfterViewInit {
     /// //////////////////////////////////////////////////////////////////// ///
     /// Observable test area
     /// //////////////////////////////////////////////////////////////////// ///
-    this.db.getEpisodeRespObs().subscribe({
-      next: (val: ThxEpisodeRespDataType[]) =>  {
-        this.epiResp = [ ... val];
+    this.db.getEpisodeRespObs().subscribe(val => {
+      this.epiResp = [...val];
         console.log(`[EpisodeResp] Subscriber: Next. Length of val: ${val.length}`);
-      },
-      complete: () => { 
-        console.log(`[EpisodeResp] Subscriber: Complete. Length of epiResp: ${this.epiResp.length}`);
-        this.epiResp = [... this.epiResp];
-      }
     });
+    this.db.updateEpisodeRespData();
     /// //////////////////////////////////////////////////////////////////// ///
   }
   

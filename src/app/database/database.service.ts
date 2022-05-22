@@ -103,8 +103,12 @@ export class DatabaseService {
   updateEpisodeRespData(): void {
     this.http.get<ThxEpisodeRespDataType[]> (`${this.url}/episode/resp/`)
       .subscribe({
-        next:  (val: ThxEpisodeRespDataType[]) => { this._episodeResp.push(...val); },
+        next:  (val: ThxEpisodeRespDataType[]) => {
+          console.log(`[updateResp] Next val of length ${val.length}.`)
+          this._episodeResp.push(...val);
+        },
         complete: () => {
+          console.log(`[updateResp] Completed: epiResp length: ${this._episodeResp.length}`);
             this.episodeResp.next(this._episodeResp);
         }
       });
