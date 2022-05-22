@@ -11,6 +11,9 @@ td.pl10 {
   padding-left: 10px;
 }
 
+td.mt10 {
+  margin-top: 10px;
+}
 
 mat-form-field.mt10 {
   margin-top: 10px;

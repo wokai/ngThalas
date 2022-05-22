@@ -19,13 +19,8 @@ export class EpisodeFrameComponent implements AfterViewInit {
   episodeColumns: string[] = ['id', 'device', 'count', 'value', 'begin', 'end' ];
   device!: string;
   
-  /// ////////////////////////////////////////////////////////////////////// ///
-  /// Observable test area
-  /// ////////////////////////////////////////////////////////////////////// ///
-  epiResp: ThxEpisodeRespDataType[] = [];
-  /// ////////////////////////////////////////////////////////////////////// ///
   
-  @Input() episode!: ThxEpisodeRespDataType;
+  @Input() episode!: ThxEpisodeRespDataType | null;
   @Output() episodeChange = new EventEmitter<ThxEpisodeRespDataType>();
     
   dataSource: MatTableDataSource<ThxEpisodeRespDataType>;
@@ -48,37 +43,19 @@ export class EpisodeFrameComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.db.getEpisodeRespData().subscribe({
-      next:     (val: ThxEpisodeRespDataType[]) => { this.episodes.push(...val); },
-      complete: () => {
-        /// This 'refresh' is required for updating of displayed table
-        this.episodes = [ ... this.episodes];
-        this.dataSource = new MatTableDataSource<ThxEpisodeRespDataType>(this.episodes);
-        this.dataSource.paginator = this.paginator;
-    }});
-    
+    this.db.getEpisodeObservable().subscribe(val => {
+      this.episodes = [...val];
+      this.dataSource = new MatTableDataSource<ThxEpisodeRespDataType>(this.episodes);
+      this.dataSource.paginator = this.paginator;
+    });
+    this.db.updateEpisodeData();
+
     this.db.getDeviceData().subscribe({
       next:  (val: ThxDeviceData []) => { this.devices.push(...val); },
       complete: () => { this.devices = [ ... this.devices]; }
     });
-    
-    /// //////////////////////////////////////////////////////////////////// ///
-    /// Observable test area
-    /// //////////////////////////////////////////////////////////////////// ///
-    this.db.getEpisodeRespObs().subscribe(val => {
-      this.epiResp = [...val];
-        console.log(`[EpisodeResp] Subscriber: Next. Length of val: ${val.length}`);
-    });
-    this.db.updateEpisodeRespData();
-    /// //////////////////////////////////////////////////////////////////// ///
   }
   
-  /// ////////////////////////////////////////////////////////////////////// ///
-  /// Observable test area
-  /// ////////////////////////////////////////////////////////////////////// ///
-  updateEpisodeRespData(): void {
-    this.db.updateEpisodeRespData();
-  }
-  /// ////////////////////////////////////////////////////////////////////// ///
+
 
 }

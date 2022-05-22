@@ -22,19 +22,18 @@ export class EpisodeDetailComponent implements AfterViewInit {
     this.episodeEndTime = `${this.endTime.toTimeString().substr(0, 8)}  (${this.endTime.toLocaleDateString()})`;
   }
 
-
-  private _episode!: ThxEpisodeRespDataType;
+  private _episode!: ThxEpisodeRespDataType | null;
   
-  @Input() set episode(episode: ThxEpisodeRespDataType) {
+  @Input() set episode(episode: ThxEpisodeRespDataType | null) {
     this._episode = episode;
-    if(this.episode){
+    if(episode){
       this.startTime = new Date(episode.ebegin);
       this.endTime = new Date(episode.eend);
       this.setDisplayTimes();
     }
   }
   
-  get episode(): ThxEpisodeRespDataType {
+  get episode(): ThxEpisodeRespDataType | null {
     return this._episode;
   }
 
@@ -46,8 +45,17 @@ export class EpisodeDetailComponent implements AfterViewInit {
     this.setDisplayTimes();
   }
 
-  ngAfterViewInit(): void {
-    
+  ngAfterViewInit(): void {}
+
+  deleteEpisode(){
+    if(this.episode){
+      console.log(`[deleteEpisode] Episode ID: ${this.episode.eid}`)
+      this.db.deleteEpisode(this.episode.eid).subscribe(res => {
+        console.log(res);
+        this.db.updateEpisodeData();
+        this.episode = null;
+      });
+    }
   }
 
 }

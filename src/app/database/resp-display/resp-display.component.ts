@@ -48,6 +48,7 @@ export class RespDisplayComponent implements AfterViewInit {
   inhalData: ThxInhalDataType[] = [];
 
   @Input() set episode(episode: ThxEpisodeRespDataType) {
+    
     this._episode = episode;
     if(this.episode){
       /// Clear previous content
@@ -100,7 +101,7 @@ export class RespDisplayComponent implements AfterViewInit {
   updateEpisodeTimes() {
     this.episode.begin = this.startTime.toISOString();
     this.episode.end = this.endTime.toISOString();
-    this.db.updateEpisodeData(this.episode).subscribe(res => { 
+    this.db.updateEpisodeRecord(this.episode).subscribe(res => { 
       this.episodeUpdate = res;  /// 1: on success
     });
   }

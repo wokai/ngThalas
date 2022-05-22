@@ -10,26 +10,6 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-<hr>
-<div>
-  <table>
-    <tr>
-      <td>Selected device:</td>
-      <td>{{ device }}</td>
-    </tr>
-    <tr>
-      <td>Selected episode:</td>
-      <td>{{ episode?.value  }}</td>
-    </tr>
-    <tr>
-      <td>Epi Resp records</td>
-      <td>{{ epiResp.length }}</td>
-    </tr>
-  </table>
-  
-  
-</div>
-<hr>
 </div>
 
 <div class="table-container mat-elevation-z8">
@@ -73,7 +53,6 @@
       
      
       <tr mat-header-row *matHeaderRowDef="episodeColumns" (click)="onHeaderRowClicked()">
-        
       </tr>
       <tr mat-row *matRowDef="let row; columns: episodeColumns;" (click)="onRowClicked(row)"> 
       </tr>

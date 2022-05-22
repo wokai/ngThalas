@@ -1,7 +1,7 @@
 <div>
-<form *ngIf="episode">
-  
-  <table class="full-width mt10"><tr>
+<form *ngIf="episode"> 
+<table class="full-width mt10">
+    <tr>
     <td class="pr10">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>ID</mat-label>
@@ -40,7 +40,17 @@
         <mat-hint>Episode end</mat-hint>
       </mat-form-field>
     </td>
-  </tr></table>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>
+      <div class="mt10" align="right">
+        <button mat-raised-button color="warn" (click)="deleteEpisode()">Delete Episode</button>
+      </div>
+    </td>
+  </tr>
+</table>
 </form>
 <div *ngIf="!episode">
   (No Episode selected)

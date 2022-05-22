@@ -48,16 +48,9 @@ export class DatabaseService {
   private endTime: Date;
   private url = '/data/db';
   
-  private _episodes: ThxEpisodeDataType[] = [];
-  episodes: Subject<ThxEpisodeDataType[]> = new Subject();
-  
-  /// ////////////////////////////////////////////////////////////////////// ///
-  /// Observable test area
-  /// ////////////////////////////////////////////////////////////////////// ///
-  private _episodeResp: ThxEpisodeRespDataType[] = [];
-  episodeResp: Subject<ThxEpisodeRespDataType[]> = new Subject();
-  /// ////////////////////////////////////////////////////////////////////// ///
-  
+  private _episodes: ThxEpisodeRespDataType[] = [];
+  episodes: Subject<ThxEpisodeRespDataType[]> = new Subject();
+    
   constructor(private http: HttpClient) {
     
     this.startTime = this.fullMinutes(60);
@@ -68,53 +61,29 @@ export class DatabaseService {
     return this.http.get<ThxDeviceData[]> (`${this.url}/device`);
   }
 
-  getEpisodeObservable(): Observable<ThxEpisodeDataType[]> {
+  getEpisodeObservable(): Observable<ThxEpisodeRespDataType[]> {
     return this.episodes;
   }
   
-  getEpisodeUpdate(): void {
-    this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`)
-      .subscribe((e: ThxEpisodeDataType[]) => {
-        this._episodes.length = 0;
-        this._episodes.push(...e);
-        this.episodes.next(this._episodes);
-      })
+  updateEpisodeData(): void {
+    this._episodes.length = 0;
+    this.http.get<ThxEpisodeRespDataType[]> (`${this.url}/episode/resp/`)
+      .subscribe({
+        next:  (val: ThxEpisodeRespDataType[]) => {
+          this._episodes.push(...val);
+        },
+        complete: () => {
+            this.episodes.next(this._episodes);
+        }
+      });
   }
   
-  getEpisodeData(): Observable<ThxEpisodeDataType[]> {
-    return this.http.get<ThxEpisodeDataType[]> (`${this.url}/episode`);
-  }
-  
-  updateEpisodeData(episode: ThxEpisodeDataType): Observable<number>{
+  updateEpisodeRecord(episode: ThxEpisodeDataType): Observable<number>{
     const headers = new HttpHeaders().set("Content-Type", "application/json");
     /// http returns 1 on success and 0 on error
     return this.http.put<number>(`${this.url}/episode/update/time`, episode)
     .pipe(val => {return val;} );
   }
-  
-  /// ////////////////////////////////////////////////////////////////////// ///
-  /// Observable test area
-  /// ////////////////////////////////////////////////////////////////////// ///
-  
-  getEpisodeRespObs(): Observable<ThxEpisodeRespDataType[]> {
-    return this.episodeResp;
-  }
-  
-  updateEpisodeRespData(): void {
-    this.http.get<ThxEpisodeRespDataType[]> (`${this.url}/episode/resp/`)
-      .subscribe({
-        next:  (val: ThxEpisodeRespDataType[]) => {
-          console.log(`[updateResp] Next val of length ${val.length}.`)
-          this._episodeResp.push(...val);
-        },
-        complete: () => {
-          console.log(`[updateResp] Completed: epiResp length: ${this._episodeResp.length}`);
-            this.episodeResp.next(this._episodeResp);
-        }
-      });
-  }
-  
-  /// ////////////////////////////////////////////////////////////////////// ///
   
   getEpisodeRespData(): Observable<ThxEpisodeRespDataType[]> {
     return this.http.get<ThxEpisodeRespDataType[]> (`${this.url}/episode/resp/`)

@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 
 import { ThxEpisodeRespDataType } from '../model/thx.db.data.model';
+import { DatabaseService         } from './database.service';
 
 @Component({
   selector: 'database',
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.css']
 })
-export class DatabaseComponent implements OnInit {
+export class DatabaseComponent implements AfterViewInit {
 
-  currentEpisode!: ThxEpisodeRespDataType;
+  currentEpisode!: ThxEpisodeRespDataType | null;
 
-  constructor() { }
+  constructor(private db : DatabaseService){ }
 
-  ngOnInit(): void {
-  }
+  ngAfterViewInit(): void {}
 
 }
