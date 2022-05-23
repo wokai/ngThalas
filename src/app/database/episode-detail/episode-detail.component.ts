@@ -22,9 +22,9 @@ export class EpisodeDetailComponent implements AfterViewInit {
     this.episodeEndTime = `${this.endTime.toTimeString().substr(0, 8)}  (${this.endTime.toLocaleDateString()})`;
   }
 
-  private _episode!: ThxEpisodeRespDataType | null;
+  private _episode!: ThxEpisodeRespDataType;
   
-  @Input() set episode(episode: ThxEpisodeRespDataType | null) {
+  @Input() set episode(episode: ThxEpisodeRespDataType) {
     this._episode = episode;
     if(episode){
       this.startTime = new Date(episode.ebegin);
@@ -33,7 +33,7 @@ export class EpisodeDetailComponent implements AfterViewInit {
     }
   }
   
-  get episode(): ThxEpisodeRespDataType | null {
+  get episode(): ThxEpisodeRespDataType {
     return this._episode;
   }
 
@@ -53,7 +53,7 @@ export class EpisodeDetailComponent implements AfterViewInit {
       this.db.deleteEpisode(this.episode.eid).subscribe(res => {
         console.log(res);
         this.db.updateEpisodeData();
-        this.episode = null;
+        this.episodeChange.emit(undefined);
       });
     }
   }

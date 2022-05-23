@@ -11,7 +11,7 @@ import { DatabaseService         } from './database.service';
 })
 export class DatabaseComponent implements AfterViewInit {
 
-  currentEpisode!: ThxEpisodeRespDataType | null;
+  currentEpisode!: ThxEpisodeRespDataType;
 
   constructor(private db : DatabaseService){ }
 

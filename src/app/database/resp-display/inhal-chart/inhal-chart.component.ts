@@ -38,6 +38,7 @@ export class InhalChartComponent implements AfterViewInit {
   private chart!: Chart;
   
   consMax: number = 0;
+  consMin: number = 0;
   consLast: number = 0;
   private inspData: TimePoint[] = [];
   private macData:  TimePoint[] = [];
@@ -51,6 +52,7 @@ export class InhalChartComponent implements AfterViewInit {
         this.endTime   = this.nextFullInterval(60, new Date(this._inhalData[this._inhalData.length - 1].time));  
         
         this.consMax = Math.max(...this._inhalData.map(i => i.cons));
+        this.consMin = Math.min(...this._inhalData.map(i => i.cons));
         this.consLast = this._inhalData[this._inhalData.length - 1].cons;
        
         this.inspData.length = 0;
@@ -86,7 +88,17 @@ export class InhalChartComponent implements AfterViewInit {
             display: true,
             position: 'right',
             beginAtZero: true,
-            max: Math.ceil(this.consMax/10) * 10,
+            max: 2,
+            ticks: {
+              stepSize: 0.4
+            }
+          },
+          y2: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            beginAtZero: true,
+            max: 50,
             ticks: {
               stepSize: 10
             }
@@ -119,7 +131,8 @@ export class InhalChartComponent implements AfterViewInit {
             /// Light Blue 50
             backgroundColor: '#E1F5FE', /// 0
             borderColor: '#007bff',     /// 400
-            pointRadius: 2
+            pointRadius: 2,
+            yAxisID: 'y',
           },
           {
             data: this.macData,
@@ -127,14 +140,16 @@ export class InhalChartComponent implements AfterViewInit {
             /// Red 50
             backgroundColor: '#FFEBEE',
             borderColor: '#dc3545',
-            pointRadius: 2
+            pointRadius: 2,
+            yAxisID: 'y1',
           },
           {
             data: this.consData,
             label: 'Consumption',
             backgroundColor: '#adf0ed',
             borderColor: '#28a745',
-            pointRadius: 2
+            pointRadius: 2,
+            yAxisID: 'y2',
           }
         ]
       },
@@ -167,6 +182,26 @@ export class InhalChartComponent implements AfterViewInit {
             max: 10,
             ticks: {
               stepSize: 2
+            }
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            beginAtZero: true,
+            max: 2,
+            ticks: {
+              stepSize: 0.4
+            }
+          },
+          y2: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            beginAtZero: true,
+            max: 50,
+            ticks: {
+              stepSize: 10
             }
           }
         }

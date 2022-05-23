@@ -5,10 +5,15 @@ mat-card{
   box-sizing: border-box;
 }
 
+mat-form-field.mt10 {
+  margin-top: 10px;
+}
+
 
 .full-width {
   width: 100%;
 }
+
 
 td.pr10 {
   padding-right: 10px;
@@ -18,9 +23,10 @@ td.pl10 {
   padding-left: 10px;
 }
 
-
-mat-form-field.mt10 {
-  margin-top: 10px;
+td.center
+{
+    text-align: center; 
+    vertical-align: middle;
 }
 
 table.mt10 {
@@ -37,8 +43,3 @@ table.my10 {
 }
 
 
-td.center
-{
-    text-align: center; 
-    vertical-align: middle;
-}
