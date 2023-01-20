@@ -52,6 +52,11 @@ export class RespDisplayComponent implements AfterViewInit {
   
   refreshData() {
     if(this.episode) {
+      
+      this.respData.length = 0;
+      this.gasData.length = 0;
+      this.inhalData.length = 0;
+      
       this.db.getRespData(this.episode.eid)
       .subscribe({
         next: (res: ThxRespDataType[]) => { this.respData.push(...res); },
