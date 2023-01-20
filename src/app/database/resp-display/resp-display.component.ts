@@ -46,6 +46,40 @@ export class RespDisplayComponent implements AfterViewInit {
   respData:  ThxRespDataType[]  = [];
   gasData:   ThxGasDataType[]   = [];
   inhalData: ThxInhalDataType[] = [];
+  
+  get episode(): ThxEpisodeRespDataType { return this._episode; }
+
+  
+  refreshData() {
+    if(this.episode) {
+      this.db.getRespData(this.episode.eid)
+      .subscribe({
+        next: (res: ThxRespDataType[]) => { this.respData.push(...res); },
+        complete: () => {
+          this.respData = [... this.respData];
+          this.startTime = new Date(this.respData[0].time);
+          this.endTime = new Date(this.respData[this.respData.length - 1].time);
+          this.setDisplayTimes();
+        }
+      })
+ 
+      this.db.getGasData(this.episode.eid)
+      .subscribe({
+        next: (res: ThxGasDataType[]) => { this.gasData.push(...res); },
+        complete: () => { this.gasData = [... this.gasData]; }
+      });
+      
+      this.db.getInhalData(this.episode.eid)
+        .subscribe({
+          next: (res: ThxInhalDataType[]) => { this.inhalData.push(...res); },
+          complete: () => {
+            this.inhalData = [...this.inhalData];
+            this.startTime = new Date(this.inhalData[0].time);
+            this.endTime   = new Date(this.inhalData[this.inhalData.length - 1].time);
+          }
+        });
+    }
+  } 
 
   @Input() set episode(episode: ThxEpisodeRespDataType) {
     
@@ -84,11 +118,6 @@ export class RespDisplayComponent implements AfterViewInit {
         });
     }
   }
-  
-  get episode(): ThxEpisodeRespDataType {
-    return this._episode;
-  }
-
 
   constructor(private db : DatabaseService) {
     this.startTime = this.fullMinutes(60);
@@ -97,6 +126,10 @@ export class RespDisplayComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {}
+  
+  updateData() {
+    
+  }
   
   updateEpisodeTimes() {
     this.episode.begin = this.startTime.toISOString();
