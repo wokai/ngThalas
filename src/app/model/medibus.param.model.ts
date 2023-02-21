@@ -40,6 +40,4 @@ export class MedibusParameter implements MedibusParameterType {
   static from (m: MedibusParameterType): MedibusParameter {    
     return new MedibusParameter().assign(m);
   }
-  
-  
 }
