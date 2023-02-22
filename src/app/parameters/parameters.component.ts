@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, Inject }  from '@angular/core';
+import { Component, AfterViewInit, ViewChild }  from '@angular/core';
 import { MatTableDataSource }                           from '@angular/material/table';
 import { MatPaginator       }                           from '@angular/material/paginator';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef}      from '@angular/material/dialog';
@@ -6,7 +6,7 @@ import { MatButtonModule }                              from '@angular/material/
 
 import { MedibusParameterType, MedibusParameter }       from '../model/medibus.param.model';
 import { ParameterService }                             from './parameter.service';
-
+import { ParameterEditDialogComponent }                 from './parameter-edit-dialog.component';
 
 
 @Component({
@@ -33,9 +33,7 @@ export class ParametersComponent implements AfterViewInit {
   }
 
   openDialog(param: MedibusParameterType): void {
-    const dialogRef = this.dialog.open(ParameterEditDialog, {
-      data: param
-    });
+    const dialogRef = this.dialog.open(ParameterEditDialogComponent, { data: param });
   }
 
   ngAfterViewInit(): void {
@@ -45,20 +43,5 @@ export class ParametersComponent implements AfterViewInit {
         this.dataSource = new MatTableDataSource<MedibusParameterType>(this.parameters);
         this.dataSource.paginator = this.paginator;
       });
-  }
-}
-
-@Component({
-  selector: 'parameter-edit-dialog',
-  templateUrl: 'parameter.edit.dialog.html',
-})
-export class ParameterEditDialog{
-  constructor(
-    public dialogRef: MatDialogRef<ParameterEditDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: MedibusParameterType,
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 }

@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Medibus Parameter | Parameter ID {{ data.id }}</h1>
+<form class="parameter-edit-form">
+<table class="full-width mt10">
+  <tr>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="data.description" name="description"/>
+      <mat-hint>Textual description of parameter</mat-hint>
+      <button *ngIf="data.description" matSuffix mat-icon-button aria-label="Clear" (click)="data.description=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </tr>
+</table>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-button (click)="onOkClick()">OK</button>
+  </div>
+</form>

@@ -35,6 +35,7 @@ import { NgbModule          } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent         } from './app.component';
 import { DevicesComponent     } from './devices/devices.component';
 import { ParametersComponent  } from './parameters/parameters.component';
+import { ParameterEditDialogComponent } from './parameters/parameter-edit-dialog.component';
 import { HomeComponent        } from './home/home.component';
 import { XenonDeviceComponent } from './devices/xenon-device/xenon-device.component';
 import { BoolComponent        } from './bool/bool.component';
@@ -58,6 +59,7 @@ import { LocaleDatePipe          } from './pipes/locale-date.pipe';
 import { DeviceListComponent } from './devices/device-list/device-list.component';
 import { GasChartComponent } from './database/resp-display/gas-chart/gas-chart.component';
 import { InhalChartComponent } from './database/resp-display/inhal-chart/inhal-chart.component';
+
 
 const routes: Routes = [
   { path : 'home',    component: HomeComponent }, 
@@ -94,7 +96,8 @@ const routes: Routes = [
     LocaleDatePipe,
     DeviceListComponent,
     GasChartComponent,
-    InhalChartComponent
+    InhalChartComponent,
+    ParameterEditDialogComponent
   ],
   imports: [
     BrowserModule,
