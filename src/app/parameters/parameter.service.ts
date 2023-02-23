@@ -17,5 +17,4 @@ export class ParameterService {
     return this.http.get<MedibusParameterType []>(this.url)
       .pipe(map((d:MedibusParameterType[]) => d.map((m: MedibusParameterType) => MedibusParameter.from(m))));
   }
-  
 }
