@@ -2,14 +2,32 @@
 <form class="parameter-edit-form">
 <table class="full-width mt10">
   <tr>
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Description</mat-label>
-      <input matInput [(ngModel)]="data.description" name="description"/>
-      <mat-hint>Textual description of parameter</mat-hint>
-      <button *ngIf="data.description" matSuffix mat-icon-button aria-label="Clear" (click)="data.description=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>ID</mat-label>
+        <input matInput disabled [(ngModel)]="data.id" name="paramId"/>
+        <mat-hint>Unique numerical value</mat-hint>
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>Code</mat-label>
+        <input matInput disabled [(ngModel)]="data.code" name="paramCode"/>
+        <mat-hint>Unique numerical value</mat-hint>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="data.description" name="description"/>
+        <mat-hint>Textual description of parameter</mat-hint>
+        <button *ngIf="data.description" matSuffix mat-icon-button aria-label="Clear" (click)="data.description=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>      
+    </td>
   </tr>
 </table>
   <div mat-dialog-actions>
