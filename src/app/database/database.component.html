@@ -1,4 +1,4 @@
-<mat-grid-list cols="2" rows="2" rowHeight="700px">
+<mat-grid-list cols="2" rows="2" rowHeight="700px" >
   <mat-grid-tile>
     <mat-card>
       <mat-card-title>Episodes</mat-card-title>
@@ -12,7 +12,7 @@
     <mat-card>
       <mat-card-title>Respiration data</mat-card-title>
       <mat-card-subtitle>
-        <div>
+        <div *ngIf="currentEpisode !== undefined">
           <div class="half-width">Episode: {{ currentEpisode.eid }}</div>
           <div class="half-width">Count:   {{ currentEpisode.rcount }}</div>
         </div>
@@ -25,8 +25,7 @@
     </mat-card>
   </mat-grid-tile>
   
-  
-  <mat-grid-tile> 
+  <mat-grid-tile *ngIf="currentEpisode !== undefined"> 
     <mat-card>
       <mat-card-title>Episode Detail</mat-card-title>
       <mat-card-subtitle>Episode: {{currentEpisode.eid}}</mat-card-subtitle>
@@ -36,6 +35,4 @@
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
-  
-
 </mat-grid-list>

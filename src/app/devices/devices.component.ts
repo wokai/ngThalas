@@ -24,6 +24,7 @@ export class DevicesComponent implements AfterViewInit {
     this.device.getXenonDevices()
       .subscribe((data: ThxXenonDevice[]) => {
         this.devices = this.devices.concat(data);
+        this.selectedDevice = this.devices[0];
       });
   }
 
