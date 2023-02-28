@@ -1,7 +1,8 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef}      from '@angular/material/dialog';
+import { Component, Inject }                          from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef}    from '@angular/material/dialog';
+import { MatCheckboxModule }                          from '@angular/material/checkbox';
 
-import { MedibusParameterType, MedibusParameter }       from '../model/medibus.param.model';
+import { MedibusParameterType, MedibusParameter }     from '../model/medibus.param.model';
 
 @Component({
   selector: 'parameter-edit-dialog',
