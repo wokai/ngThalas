@@ -21,4 +21,6 @@ export class ParameterService {
   updateMedibusParameter(p: MedibusParameter): Observable<TransactResult>{
     return this.http.post<TransactResultType>(`${this.url}/upsert`, p).pipe(map(p => TransactResult.from(p)));
   }
+  
+  //  createMedibusParameter(p: MedibusParameter): Observable<TransactResult<MedibusParameter>>{}
 }

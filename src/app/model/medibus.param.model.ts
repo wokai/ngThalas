@@ -49,7 +49,8 @@ export class MedibusParameter implements MedibusParameterType {
 export interface TransactResultType {
   status:  string,
   success: boolean,
-  reason:  string
+  reason:  string,
+  id:      number
 }
 
 export class TransactResult {
