@@ -41,3 +41,26 @@ export class MedibusParameter implements MedibusParameterType {
     return new MedibusParameter().assign(m);
   }
 }
+
+/**
+ * @see{thalas} - (/routes/param) - (
+ **/
+
+export interface TransactResultType {
+  status:  string,
+  success: boolean,
+  reason:  string
+}
+
+export class TransactResult {
+  constructor() {}
+  
+  assign(t: TransactResultType): TransactResult {
+    Object.assign(this, t);
+    return this;
+  }
+  
+  static from (t: TransactResultType): TransactResult {
+    return new TransactResult().assign(t);
+  }
+}
