@@ -26,14 +26,14 @@ export class ParametersComponent implements AfterViewInit {
   constructor(public dialog: MatDialog, private service: ParameterService) {
     this.dataSource = new MatTableDataSource<MedibusParameterType>([]);
   }
-
-  printRow(row: MedibusParameter) : void {
-    console.log(`[param.comp] Click row: ${row.id}`)
-    this.openDialog(row);
+  
+  openCreateDialog(): void {
+    const param = new MedibusParameter();
+    const dialogRef = this.dialog.open(ParameterEditDialogComponent, { data: { create: true, param: param }} );
   }
-
-  openDialog(param: MedibusParameterType): void {
-    const dialogRef = this.dialog.open(ParameterEditDialogComponent, { data: param });
+  
+  openEditDialog(param: MedibusParameterType): void {
+    const dialogRef = this.dialog.open(ParameterEditDialogComponent, { data: { create: false, param: param }} );
   }
 
   ngAfterViewInit(): void {

@@ -42,6 +42,12 @@ export class MedibusParameter implements MedibusParameterType {
   }
 }
 
+export interface EditDialogData<T> {
+  create: boolean,
+  param: T
+}
+
+
 /**
  * @see{thalas} - (/routes/param) - (
  **/

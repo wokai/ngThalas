@@ -25,7 +25,7 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef}    from '@angular/material/di
 import { MatCheckboxModule }                          from '@angular/material/checkbox';
 
 import { MedibusParameterType, MedibusParameter, 
-                                  TransactResult }    from '../model/medibus.param.model';
+                  EditDialogData, TransactResult }    from '../model/medibus.param.model';
 import { ParameterService }                           from './parameter.service';
 
 @Component({
@@ -34,14 +34,21 @@ import { ParameterService }                           from './parameter.service'
   styleUrls: ['./parameter-edit-dialog.component.css']
 })
 export class ParameterEditDialogComponent {
+  
+  public create: boolean;
+   
   constructor(
     public dialogRef: MatDialogRef<ParameterEditDialogComponent>,
     private service: ParameterService,
-    @Inject(MAT_DIALOG_DATA) public data: MedibusParameter,
-  ) {}
- 
+    @Inject(MAT_DIALOG_DATA) public data: EditDialogData<MedibusParameter>
+  ) { this.create = false; }
+    
   onCancelClick(): void { this.dialogRef.close(); }
   onOkClick():     void {
-    this.service.updateMedibusParameter(this.data).subscribe((data: TransactResult) => { this.dialogRef.close(); });
+    if(this.data.create){
+      this.service.updateMedibusParameter(this.data.param).subscribe((data: TransactResult) => { this.dialogRef.close(); });
+    } else {
+      this.service.createMedibusParameter(this.data.param).subscribe((data: TransactResult) => { this.dialogRef.close(); });
+    }
   }
 }
