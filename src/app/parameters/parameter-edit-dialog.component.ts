@@ -34,14 +34,12 @@ import { ParameterService }                           from './parameter.service'
   styleUrls: ['./parameter-edit-dialog.component.css']
 })
 export class ParameterEditDialogComponent {
-  
-  public create: boolean;
-   
+     
   constructor(
     public dialogRef: MatDialogRef<ParameterEditDialogComponent>,
     private service: ParameterService,
     @Inject(MAT_DIALOG_DATA) public data: EditDialogData<MedibusParameter>
-  ) { this.create = false; }
+  ) {}
     
   onCancelClick(): void { this.dialogRef.close(); }
   onOkClick():     void {

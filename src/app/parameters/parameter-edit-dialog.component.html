@@ -9,7 +9,7 @@
 
       <mat-form-field appearance="outline" style="width:400px !important;">
         <mat-label>Code</mat-label>
-        <input matInput disabled [(ngModel)]="data.param.code" name="paramCode"/>
+        <input matInput disabled [(ngModel)]="data.param.code" name="paramCode" [disabled]="!data.create"/>
         <mat-hint>Unique numerical value</mat-hint>
       </mat-form-field>
       
@@ -27,11 +27,6 @@
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field> 
-      
-      <mat-form-field>
-        <mat-label>Create</mat-label>
-        <input matInput [(ngModel)]="create" name="doCreate">
-      </mat-form-field>
       
       <mat-grid-list cols="2" rowHeight="80px">
         <mat-grid-tile>
