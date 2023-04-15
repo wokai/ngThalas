@@ -54,12 +54,19 @@ export interface EditDialogData<T> {
 
 export interface TransactResultType {
   status:  string,
-  success: boolean,
+  success: number,
   reason:  string,
   id:      number
 }
 
 export class TransactResult {
+  
+  status  : string  = '';
+  success : number  = -1; /// Encoding: -1 = empty, 0 = false, 1 = true
+  reason  : string  =  '';
+  id      : number  = -1;
+  
+  
   constructor() {}
   
   assign(t: TransactResultType): TransactResult {

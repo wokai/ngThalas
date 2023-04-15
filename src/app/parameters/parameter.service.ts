@@ -11,7 +11,17 @@ import { MedibusParameterType, MedibusParameter, TransactResultType, TransactRes
 export class ParameterService {
   
   private url = '/data/param';
+  private _transactResult = new TransactResult();
+  
+  
   constructor(private http: HttpClient) { }
+  
+  get transactResult() { return this._transactResult; }
+  
+  passTransactResult(p: TransactResultType) {
+    this.transactResult.assign(p);
+    return this._transactResult;
+  }
   
   getMedibusParameters(): Observable<MedibusParameter []> {
     return this.http.get<MedibusParameterType []>(this.url)
@@ -19,10 +29,10 @@ export class ParameterService {
   }
   
   updateMedibusParameter(p: MedibusParameter): Observable<TransactResult>{
-    return this.http.post<TransactResultType>(`${this.url}/upsert`, p).pipe(map(p => TransactResult.from(p)));
+    return this.http.post<TransactResultType>(`${this.url}/upsert`, p).pipe(map(p =>  this.passTransactResult(p)));
   }
   
   createMedibusParameter(p: MedibusParameter): Observable<TransactResult>{
-    return this.http.post<TransactResultType>(`${this.url}/save`, p).pipe(map(p => TransactResult.from(p)));
+    return this.http.post<TransactResultType>(`${this.url}/save`, p).pipe(map(p => this.passTransactResult(p)));
   }
 }

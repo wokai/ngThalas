@@ -49,4 +49,5 @@ export class ParameterEditDialogComponent {
       this.service.createMedibusParameter(this.data.param).subscribe((data: TransactResult) => { this.dialogRef.close(); });
     }
   }
+  
 }

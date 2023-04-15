@@ -60,6 +60,7 @@ import { LocaleDatePipe          } from './pipes/locale-date.pipe';
 import { DeviceListComponent } from './devices/device-list/device-list.component';
 import { GasChartComponent } from './database/resp-display/gas-chart/gas-chart.component';
 import { InhalChartComponent } from './database/resp-display/inhal-chart/inhal-chart.component';
+import { TransactStatusDisplayComponent } from './parameters/transact-status-display/transact-status-display.component';
 
 
 const routes: Routes = [
@@ -98,7 +99,8 @@ const routes: Routes = [
     DeviceListComponent,
     GasChartComponent,
     InhalChartComponent,
-    ParameterEditDialogComponent
+    ParameterEditDialogComponent,
+    TransactStatusDisplayComponent
   ],
   imports: [
     BrowserModule,
