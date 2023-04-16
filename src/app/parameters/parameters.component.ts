@@ -4,9 +4,10 @@ import { MatPaginator       }                           from '@angular/material/
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef}      from '@angular/material/dialog';
 import { MatButtonModule }                              from '@angular/material/button';
 
-import { MedibusParameterType, MedibusParameter }       from '../model/medibus.param.model';
-import { ParameterService }                             from './parameter.service';
-import { ParameterEditDialogComponent }                 from './parameter-edit-dialog.component';
+import { MedibusParameterType, MedibusParameter }   from '../model/medibus.param.model';
+import { ParameterService }                         from './parameter.service';
+import { ParameterEditDialogComponent }             from './parameter-edit-dialog.component';
+import { TransactStatusDisplayComponent }           from './transact-status-display/transact-status-display.component';
 
 
 @Component({

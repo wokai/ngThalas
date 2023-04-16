@@ -61,7 +61,7 @@ export interface TransactResultType {
 
 export class TransactResult {
   
-  status  : string  = '';
+  status  : string  = '(-)';
   success : number  = -1; /// Encoding: -1 = empty, 0 = false, 1 = true
   reason  : string  =  '';
   id      : number  = -1;

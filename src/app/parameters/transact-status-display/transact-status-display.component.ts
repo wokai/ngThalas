@@ -1,15 +1,18 @@
 import { Component }          from '@angular/core';
+import { TransactResult }     from '../../model/medibus.param.model';
 import { ParameterService }   from '../parameter.service';
 
 @Component({
-  selector: 'app-transact-status-display',
+  selector: 'transact-status-display',
   templateUrl: './transact-status-display.component.html',
   styleUrls: ['./transact-status-display.component.css']
 })
 export class TransactStatusDisplayComponent {
 
-  constructor(private service: ParameterService) {
-    
+  public status: TransactResult;
+
+  constructor(public service: ParameterService) {
+    this.status = service.transactResult;
   }
 
 }
