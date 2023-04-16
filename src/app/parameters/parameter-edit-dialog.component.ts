@@ -44,9 +44,9 @@ export class ParameterEditDialogComponent {
   onCancelClick(): void { this.dialogRef.close(); }
   onOkClick():     void {
     if(this.data.create){
-      this.service.updateMedibusParameter(this.data.param).subscribe((data: TransactResult) => { this.dialogRef.close(); });
-    } else {
       this.service.createMedibusParameter(this.data.param).subscribe((data: TransactResult) => { this.dialogRef.close(); });
+    } else {
+      this.service.updateMedibusParameter(this.data.param).subscribe((data: TransactResult) => { this.dialogRef.close(); });
     }
   }
   

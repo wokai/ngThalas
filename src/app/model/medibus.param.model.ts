@@ -53,17 +53,17 @@ export interface EditDialogData<T> {
  **/
 
 export interface TransactResultType {
-  status:  string,
-  success: number,
-  reason:  string,
-  id:      number
+  status  : string,
+  success : number,
+  text    : string,
+  id      : number
 }
 
 export class TransactResult {
   
   status  : string  = '(-)';
   success : number  = -1; /// Encoding: -1 = empty, 0 = false, 1 = true
-  reason  : string  =  '';
+  text    : string  =  '';
   id      : number  = -1;
   
   
