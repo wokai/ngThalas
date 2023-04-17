@@ -1,6 +1,19 @@
-<div class="rounded p-2 row">
-  <span class="col-3 text-secondary">Status:  {{ status.status  }}</span>
-  <span class="col-3 text-secondary">Success: {{ status.success }}</span>
-  <span class="col-3 text-secondary">Text:    {{ status.text    }}</span>
-  <span class="col-3 text-secondary">ID:      {{ status.id      }}</span>
+<div class="card text-secondary">
+ <mat-grid-list cols="2" rowHeight="20px">
+   <small>
+     <mat-grid-tile colspan="2">DB Transaction Status</mat-grid-tile>
+     
+     <mat-grid-tile><div>Status</div></mat-grid-tile>
+     <mat-grid-tile><div>{{ status.status  }}</div></mat-grid-tile>
+     
+     <mat-grid-tile><div>Success</div></mat-grid-tile>
+     <mat-grid-tile><div>{{ status.success }}</div></mat-grid-tile>
+     
+     <mat-grid-tile><div>Text:</div></mat-grid-tile>
+     <mat-grid-tile><div>{{ status.text }}</div></mat-grid-tile>
+     
+     <mat-grid-tile><div>ID:</div></mat-grid-tile>
+     <mat-grid-tile><div>{{ status.id }}</div></mat-grid-tile>
+   </small>
+ </mat-grid-list> 
 </div>

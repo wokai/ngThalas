@@ -1,6 +1,9 @@
-import { Component }          from '@angular/core';
-import { TransactResult }     from '../../model/medibus.param.model';
-import { ParameterService }   from '../parameter.service';
+import { Component         } from '@angular/core';
+import { MatGridListModule } from '@angular/material/grid-list'; 
+
+import { TransactResult    } from '../../model/medibus.param.model';
+import { ParameterService  } from '../parameter.service';
+
 
 @Component({
   selector: 'transact-status-display',

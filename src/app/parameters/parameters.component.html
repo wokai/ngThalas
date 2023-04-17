@@ -1,15 +1,16 @@
 <mat-drawer-container class="example-container" autosize>
 <mat-drawer mode="side" opened="true" >
-  <mat-sidenav-container>
+  <mat-sidenav-container class="m-1">
     <mat-nav-list style="width:200px;">
-      <div class="p-2"><button mat-raised-button (click)="openCreateDialog()" style="width: 100%" color="primary">Create new Parameter</button></div>
+      <div class="mb-1"><button mat-raised-button (click)="openCreateDialog()" style="width: 100%" color="primary">Create new Parameter</button></div>
+      <transact-status-display></transact-status-display>
     </mat-nav-list>
   </mat-sidenav-container>
 </mat-drawer>
 <mat-card>
   <mat-card-title>Medibus Parameters</mat-card-title>
   <mat-card-subtitle>Parameter definition table along with Snomed-CT identifier</mat-card-subtitle>
-  <transact-status-display></transact-status-display>
+  
   <mat-divider inset></mat-divider>
   <mat-card-content class="param-table border">
     <table mat-table [dataSource]="dataSource">
